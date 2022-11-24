@@ -10,7 +10,7 @@ const friendListSchema = new Schema(
     name: String,
     alias: String,
     email: String,
-    picture: String,
+    picture: String,//opcional
     Owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
   {

@@ -15,7 +15,7 @@ const cashFlowSchema = new Schema(
       },
     ],
     picture: String,
-    Owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
   {
     // this second object adds: `createdAt`, `updatedAt`
