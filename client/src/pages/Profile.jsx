@@ -1,42 +1,39 @@
+import React from 'react'
+import axios from "axios"
 
-function Home(userDetails) {
-	const user = userDetails.user;
-	const logout = () => {
-		window.open(`${process.env.REACT_APP_API_URL}/auth/logout`, "_self");
-	};
+function Profile() {
+	
+	// const user = userDetails.user;
+	// const logout = () => {
+	// 	window.open(`${process.env.REACT_APP_API_URL}/auth/logout`, "_self");
+	// };
+
+	function logout() {
+		axios({method: "POST", url: `${process.env.REACT_APP_API_URL}/auth/logout`, withCredentials: true})
+		.then((response) => {
+		   console.log("response status", response)
+
+		   if (response.status === 200) {
+			   // setCount("login")
+		   }
+	   })
+
+   }
+	
 	return (
 		<div >
-			<h1 >Home</h1>
-			<div >
-				<div >
-					<img  src="./images/profile.jpg" alt="login" />
-				</div>
-				<div >
-					<h2>Profile</h2>
-					<img
-						src={user.picture}
+			<h1>Profile page:</h1>
+
+			<img
+						// // src={user.picture}
 						alt="profile"
-						
+						className="picture-home"
 					/>
-					<input
-						type="text"
-						defaultValue={user.name}
-						
-						placeholder="UserName"
-					/>
-					<input
-						type="text"
-						defaultValue={user.email}
-						
-						placeholder="Email"
-					/>
-					<button  onClick={logout}>
+			<button  onClick={logout}>
 						Log Out
 					</button>
-				</div>
-			</div>
 		</div>
 	);
 }
 
-export default Home;
+export default Profile;

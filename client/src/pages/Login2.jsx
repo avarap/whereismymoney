@@ -27,7 +27,7 @@ const theme = createTheme();
 function Login2() {
 	const googleAuth = () => {
 		window.open(
-			`${process.env.REACT_APP_API_URL}/auth/google/callback`,
+			`${process.env.REACT_APP_API_URL}/auth/google`,
 			"_self"
 		);
 	};
