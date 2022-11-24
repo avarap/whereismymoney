@@ -6,8 +6,13 @@ const passport = require("passport");
 router.get(
   "/google",
   passport.authenticate("google", {
-    scope: ["profile"],
-  }));
+    scope: ["openid", "email", "profile"],
+  })
+);
+
+app.get("/success", (req, res) => {
+  res.send(`Welcome ${req.user.email}`);
+});
 
 router.get('/google/callback', 
   passport.authenticate('google', { failureRedirect: '/login', session: true }),
