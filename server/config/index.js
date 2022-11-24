@@ -8,6 +8,7 @@ const { MONGO_URI } = require("../db");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const passport = require("passport");
 const User = require("../models/User.model");
+const favicon = require("serve-favicon");
 
 const app = express();
 
@@ -41,6 +42,18 @@ module.exports = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
+  
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+      },
+      store: store,
+      resave: true,
+      saveUninitialized: true,
+    })
+  );
 
   //Get the GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET from Google Developer Console
   const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
@@ -56,17 +69,22 @@ module.exports = (app) => {
         clientSecret: `${process.env.GOOGLE_CLIENT_SECRET}`,
         callbackURL: `${process.env.GOOGLE_CALLBACK_URL}`,
         passReqToCallback: true,
+        scope: ['profile', 'email'],
       },
 
       // MOngoDB (called on succesful authentication)
       function (req, accessToken, refreshToken, profile, cb) {
-        User.findOrCreate({ googleId: profile.id }, function (err, user) {
+        User.findOrCreate({ googleId: profile.id, email: profile.emails[0].value, displayName: profile.displayName }, function (err, user) {
           const googleUser = {
             googleId: profile.id,
             displayName: profile.displayName,
             picture: profile.photos[0].value,
+            email: profile.emails[0].value,
           };
+          console.log(googleUser)
+          console.log(user)
           return cb(err, googleUser);
+          
         });
       }
     )
@@ -81,18 +99,6 @@ module.exports = (app) => {
     // console.log("B", user);
     return done(null, user);
   });
-
-  app.use(
-    session({
-      secret: process.env.SESSION_SECRET,
-      cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-      },
-      store: store,
-      resave: true,
-      saveUninitialized: true,
-    })
-  );
 
   app.use(passport.initialize()); // init passport on every route call
   app.use(passport.session()); //allow passport to use "express-session"

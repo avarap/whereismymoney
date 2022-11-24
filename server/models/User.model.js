@@ -8,6 +8,12 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    email: {
+      type: String,
+    },
+    displayName: {
+      type: String,
+    }
   },
   {
     // this second object adds: `createdAt`, `updatedAt`

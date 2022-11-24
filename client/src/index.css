@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.css-5nwj3y {
+  background-color: blueviolet;
+  color:azure;
+  justify-content: flex-end;
+    flex-direction: row;
+}
+
+.css-5nwj3y a {
+  color:azure;
+  text-decoration: none;
+}
+.css-5nwj3y a:hover {
+  color:rgb(37, 223, 223);
+}
+
+.picture-home {
+  width: 32px;
+  height: 32px;
+}
