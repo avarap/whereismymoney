@@ -25,19 +25,19 @@ function App() {
 		}
 	};
 
-	const checkSuccess = async () => {
-		try {
-			const url = `${process.env.REACT_APP_API_URL}/auth/success`;
-			const { data } = await axios.get(url, { withCredentials: true });
-			setTest(data.json);
-		} catch (err) {
-			console.log(err);
-		}
-	};
+	// const checkSuccess = async () => {
+	// 	try {
+	// 		const url = `${process.env.REACT_APP_API_URL}/auth/success`;
+	// 		const { data } = await axios.get(url, { withCredentials: true });
+	// 		setTest(data.json);
+	// 	} catch (err) {
+	// 		console.log(err);
+	// 	}
+	// };
 
 	useEffect(() => {
 		getUser();
-		checkSuccess();
+		// checkSuccess();
 	}, []);
 
 	return (
@@ -53,16 +53,25 @@ function App() {
 				<Route
 					exact
 					path="/profile"
-					element={user ? <Navigate to="/" /> : <Profile />}
+					element={!user?.googleId ? <Navigate to="/" /> : <Profile /> }
 				/>
 				<Route
 					exact
 					path="/login"
-					element={user ? <Navigate to="/" /> : <Login2 />}
+					element={ <Login2 /> }
 				/>
 				<Route
 					path="/signup"
 					element={<SignUp />}
+				/>
+				<Route
+					exact
+					path="/logout"
+					element={!user?.googleId ? <Navigate to="/" /> : <Profile />}
+				/>
+				<Route
+					path="*"
+					element={<h1>Error page</h1>}
 				/>
 			</Routes>
 		</div>
