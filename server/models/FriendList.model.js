@@ -3,15 +3,14 @@ const autoIncrement = require("mongoose-auto-increment");
 
 const friendListSchema = new Schema(
   {
-    referenceID: {
+    alias: {
       type: String,
       required: true,
     },
     name: String,
-    alias: String,
     email: String,
-    picture: String,//opcional
-    Owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    picture: String, //opcional
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
@@ -23,7 +22,7 @@ const friendListSchema = new Schema(
 //   model: "FriendList",
 //   field: "referenceID",
 // });
-friendListSchema.index({ referenceID: 1, Owner: 1 }, { unique: true });
+friendListSchema.index({ alias: 1, Owner: 1 }, { unique: true });
 
 const FriendList = model("FriendList", friendListSchema);
 
