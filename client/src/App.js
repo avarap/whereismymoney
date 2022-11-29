@@ -19,31 +19,36 @@ function App() {
 		try {
 			const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
 			const { data } = await axios.get(url, { withCredentials: true });
-			setUser(data.json);
+			console.log(data)
+			setUser(data.user);
 		} catch (err) {
 			console.log(err);
 		}
 	};
 
-	// const checkSuccess = async () => {
-	// 	try {
-	// 		const url = `${process.env.REACT_APP_API_URL}/auth/success`;
-	// 		const { data } = await axios.get(url, { withCredentials: true });
-	// 		setTest(data.json);
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 	}
-	// };
+	const checkSuccess = async () => {
+		try {
+			const url = `${process.env.REACT_APP_API_URL}/auth/success`;
+			const { data } = await axios.get(url, { withCredentials: true });
+			console.log(data)
+			setTest(data);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	useEffect(() => {
 		getUser();
-		// checkSuccess();
+		checkSuccess();
 	}, []);
+
+	useEffect(() => {
+		console.log("Here is the user", user)
+	}, [user]);
 
 	return (
 		<div className="container">
 			<Navbar />
-			<p>{test}</p>
 			<Routes>
 				<Route
 					exact
@@ -53,25 +58,16 @@ function App() {
 				<Route
 					exact
 					path="/profile"
-					element={!user?.googleId ? <Navigate to="/" /> : <Profile /> }
+					element={user ? <Profile {...{user, setUser}}  /> : <Navigate to="/" /> }
 				/>
 				<Route
 					exact
 					path="/login"
-					element={ <Login2 /> }
+					element={<Login2 /> }
 				/>
 				<Route
 					path="/signup"
 					element={<SignUp />}
-				/>
-				<Route
-					exact
-					path="/logout"
-					element={!user?.googleId ? <Navigate to="/" /> : <Profile />}
-				/>
-				<Route
-					path="*"
-					element={<h1>Error page</h1>}
 				/>
 			</Routes>
 		</div>
