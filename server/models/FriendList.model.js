@@ -1,5 +1,5 @@
-// const { Schema, model, default: mongoose } = require("mongoose");
-// const autoIncrement = require("mongoose-auto-increment");
+const { Schema, model, default: mongoose } = require("mongoose");
+const autoIncrement = require("mongoose-auto-increment");
 
 const friendListSchema = new Schema(
   {
@@ -24,6 +24,6 @@ const friendListSchema = new Schema(
 // });
 friendListSchema.index({ alias: 1, Owner: 1 }, { unique: true });
 
-// const FriendList = model("FriendList", friendListSchema);
+const FriendList = model("FriendList", friendListSchema);
 
-// module.exports = FriendList;
+module.exports = FriendList;
