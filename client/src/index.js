@@ -9,13 +9,11 @@ import { UserContextProvider } from "./contexts/UserContextProvider"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-
-    <Router>
-      <UserContextProvider>
+    <UserContextProvider>
+      <Router>
         <App />
-      </UserContextProvider>
-    </Router>
-
+      </Router>
+    </UserContextProvider>
   </React.StrictMode>
 );
 
