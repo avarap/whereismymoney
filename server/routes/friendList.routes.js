@@ -1,9 +1,11 @@
 const router = require("express").Router();
 
-import { findOne } from "../models/User.model";
-//import Cashflow, { find, findByIdAndRemove, findOne as _findOne } from "../models/Cashflow.model";
-import FriendList, { find, findByIdAndRemove, findOne as _findOne } from "../models/FriendList.model";
-import { isLoggedIn } from "../middlewares/auth.middlewares";
+
+const User = require("../models/User.model");
+//const Cashflow = require("../models/Cashflow.model");
+const FriendList = require("../models/FriendList.model");
+const { isLoggedIn } = require("../middlewares/auth.middlewares");
+
 
 const SuccesMessage = "Success";
 const NoDataFoundMessage = "Data not found";
@@ -11,8 +13,8 @@ const IdUsedMessage = "The Id is already in use.";
 
 router.get("/", isLoggedIn, async (req, res, next) => {
   try {
-    const userData = await findOne({ googleId: req.user.googleId });
-    const data = await find({ owner: userData._id });
+    const userData = await User.findOne({ googleId: req.user.googleId });
+    const data = await FriendList.find({ owner: userData._id });
 
     if (!userData.googleId) {
       res.json({ message: NoDataFoundMessage });
@@ -26,7 +28,6 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 });
 
 router.post("/create", isLoggedIn, async (req, res, next) => {
-  //console.log(req.body);
   try {
     const data = new FriendList();
 
@@ -51,7 +52,7 @@ router.post("/create", isLoggedIn, async (req, res, next) => {
 router.post("/delete/:id", isLoggedIn, async (req, res, next) => {
   const id = req.params.id;
   try {
-    const data = await findByIdAndRemove(id);
+    const data = await FriendList.findByIdAndRemove(id);
     res.json({ message: SuccesMessage });
     return;
   } catch (err) {
@@ -61,7 +62,7 @@ router.post("/delete/:id", isLoggedIn, async (req, res, next) => {
 
 router.get("/:id", isLoggedIn, async (req, res, next) => {
   try {
-    const data = await _findOne({ Owner: req.user._id, _id: req.params.id });
+    const data = await FriendList.findOne({ Owner: req.user._id, _id: req.params.id });
     res.json(data);
   } catch (err) {
     res.json({ message: err.message });
@@ -70,7 +71,7 @@ router.get("/:id", isLoggedIn, async (req, res, next) => {
 
 router.post("/:id", isLoggedIn, async (req, res, next) => {
   try {
-    const data = await _findOne({ Owner: req.user._id, _id: req.params.id });
+    const data = await FriendList.findOne({ Owner: req.user._id, _id: req.params.id });
 
     data.alias = req.body.alias;
     data.name = req.body.name;
@@ -87,4 +88,4 @@ router.post("/:id", isLoggedIn, async (req, res, next) => {
   }
 });
 
-export default router;
+module.exports = router;
