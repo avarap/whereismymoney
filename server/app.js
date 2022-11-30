@@ -22,11 +22,11 @@ app.use(indexRoutes);
 const googleAuth = require("./routes/auth.routes");
 app.use("/auth", googleAuth);
 
-const cashFlow = require("./routes/cashflow.routes");
-app.use("/cashflow", cashFlow);
+// const cashFlow = require("./routes/cashflow.routes");
+// app.use("/cashflow", cashFlow);
 
-const friendList = require("./routes/friendList.routes");
-app.use("/friendlist", friendList);
+// const friendList = require("./routes/friendList.routes");
+// app.use("/friendlist", friendList);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

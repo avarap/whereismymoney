@@ -25,10 +25,10 @@ router.get("/login/failed", (req, res) => {
   })
 });
 
-router.get("/success", (req, res) => {
-  console.log("TEST SUCCESS", req.user)
-  res.json(req.user);
-});
+// router.get("/success", (req, res) => {
+//   console.log("TEST SUCCESS", req.user)
+//   res.json(req.user);
+// });
 
 
 router.get("/login/success", (req, res) => {
@@ -46,7 +46,7 @@ router.get("/login/success", (req, res) => {
   }
 });
 
-//   // UserContext REACT
+// //   // UserContext REACT
 // router.get("/getuser", (req, res) => {
 //   res.send(req.user);
 // });
