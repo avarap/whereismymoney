@@ -69,7 +69,7 @@ function Login2() {
             <Box sx={{ mt: 1 }}>
             <button className={"google-btn"} onClick={googleAuth} >
             <img src="./images/google.png" alt="" />
-            <span>Sing up with Google</span>
+            <span>Sign up with Google</span>
           </button>
               <Grid container>
                 <Grid item xs>

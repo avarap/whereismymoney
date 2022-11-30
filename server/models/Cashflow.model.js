@@ -1,7 +1,6 @@
 const { Schema, model, default: mongoose } = require("mongoose");
 const findOrCreate = require("mongoose-findorcreate");
 
-
 const cashFlowSchema = new Schema(
   {
     valueDate: Date,
