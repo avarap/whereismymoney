@@ -81,8 +81,8 @@ module.exports = (app) => {
             picture: profile.photos[0].value,
             email: profile.emails[0].value,
           };
-          console.log(googleUser)
-          console.log(user)
+          // console.log(googleUser)
+          // console.log(user)
           return cb(err, googleUser);
           
         });

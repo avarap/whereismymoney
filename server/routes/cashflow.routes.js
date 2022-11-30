@@ -1,17 +1,21 @@
 const router = require("express").Router();
 
-const User = require("../models/User.model");
-const Cashflow = require("../models/Cashflow.model");
-const FriendList = require("../models/FriendList.model");
-const { isLoggedIn } = require("../middlewares/auth.middlewares");
+import { findOne } from "../models/User.model";
+import Cashflow, { find, findByIdAndRemove, findOne as _findOne } from "../models/Cashflow.model";
+// import FriendList from "../models/FriendList.model";
+import { isLoggedIn } from "../middlewares/auth.middlewares";
+
+const SuccesMessage = "Success";
+const NoDataFoundMessage = "Data not found";
+const IdUsedMessage = "The Id is already in use.";
 
 router.get("/", isLoggedIn, async (req, res, next) => {
   try {
-    const userData = await User.findOne({ googleId: req.user.googleId });
-    const data = await Cashflow.find({ owner: userData._id });
+    const userData = await findOne({ googleId: req.user.googleId });
+    const data = await find({ owner: userData._id });
 
     if (!userData.googleId) {
-      res.json({ message: "Data not found" });
+      res.json({ message: NoDataFoundMessage });
       return;
     }
     res.json(data);
@@ -26,29 +30,20 @@ router.post("/create", isLoggedIn, async (req, res, next) => {
   try {
     const data = new Cashflow();
 
-    // valueDate: Date,
-    // description: String,
-    // totalAmount: Number,
-    // overall: [
-    //   {
-    //     percentage: Number,
-    //     paid: Boolean,
-    //     user: { type: Schema.Types.ObjectId, ref: "User" },
-    //   },
-    // ],
-    // picture: String,
-    // owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
-    data.referenceID = req.body.referenceID;
-
-
+    data.valueDate = req.body.valueDate;
+    data.description = req.body.description;
+    data.totalAmount = req.body.totalAmount;
+    data.overall = [];
+    data.overall.push({ percentage: 100, paid: "True", user: req.user._id });
+    data.picture = req.body.picture;
     data.owner = req.user._id;
 
     await data.save();
-    res.json({ message: "Success" });
+    res.json({ message: SuccesMessage });
     return;
   } catch (err) {
     if (err.code === 11000) {
-      res.json({ message: " The Id is already in use." });
+      res.json({ message: IdUsedMessage });
       return;
     }
     console.log(err);
@@ -58,8 +53,8 @@ router.post("/create", isLoggedIn, async (req, res, next) => {
 router.post("/delete/:id", isLoggedIn, async (req, res, next) => {
   const id = req.params.id;
   try {
-    const data = await Cashflow.findByIdAndRemove(id);
-    res.json({ message: "Success" });
+    const data = await findByIdAndRemove(id);
+    res.json({ message: SuccesMessage });
     return;
   } catch (err) {
     res.json({ message: err.message });
@@ -68,7 +63,7 @@ router.post("/delete/:id", isLoggedIn, async (req, res, next) => {
 
 router.get("/:id", isLoggedIn, async (req, res, next) => {
   try {
-    const data = await Cashflow.findOne({ Owner: req.user._id, _id: req.params.id });
+    const data = await _findOne({ Owner: req.user._id, _id: req.params.id });
     res.json(data);
   } catch (err) {
     res.json({ message: err.message });
@@ -77,18 +72,23 @@ router.get("/:id", isLoggedIn, async (req, res, next) => {
 
 router.post("/:id", isLoggedIn, async (req, res, next) => {
   try {
-    const data = await Cashflow.findOne({ Owner: req.user._id, _id: req.params.id });
+    const data = await _findOne({ Owner: req.user._id, _id: req.params.id });
 
-    data.address.street = req.body.street;
-
+    data.valueDate = req.body.valueDate;
+    data.description = req.body.description;
+    data.totalAmount = req.body.totalAmount;
+    data.overall = [];
+    data.overall.push({ percentage: 100, paid: "True", user: req.user._id });
+    data.picture = req.body.picture;
+    data.owner = req.user._id;
 
     await data.save();
 
-    res.json({ message: "Success" });
+    res.json({ message: SuccesMessage });
     return;
   } catch (err) {
     res.json({ message: err.message });
   }
 });
 
-module.exports = router;
+export default router;
