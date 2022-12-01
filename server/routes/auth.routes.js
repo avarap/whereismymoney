@@ -10,11 +10,9 @@ router.get(
     scope: ["profile", "email"],
   }));
 
-
-
 router.get('/google/callback',
   passport.authenticate('google', {
-    successRedirect: process.env.CLIENT_PROFILE,
+    successRedirect: process.env.CLIENT_PROFILE||'/profile',
     failureRedirect: '/login/failed', session: true
   }));
 

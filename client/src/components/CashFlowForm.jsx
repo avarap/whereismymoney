@@ -1,65 +1,83 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
+import React, { useState } from "react";
+import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+// import FormLabel from "@mui/material/FormLabel";
+// import RadioGroup from "@mui/material/RadioGroup";
+// import Radio from "@mui/material/Radio";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+// import Slider from "@mui/material/Slider";
+import Button from "@mui/material/Button";
+import { postData } from "../utils/useFetch";
 
-export default function ValidationTextFields() {
+const defaultValues = {
+  valueDate: "",
+  description: "",
+  category: "",
+  totalAmount: 0,
+  // overall = [];
+  // overall.push({ percentage: 100, paid: "True", user: req.user._id });
+  picture: "",
+};
+
+const apiRoute = "/cashflow/create";
+
+const CashFlowForm = () => {
+
+  // const [beers, setBeers] = useState([]);
+  // const beersData = useFetch(process.env.REACT_APP_API_URL + apiRoute);
+  // useEffect(() => {
+  //   setBeers(beersData);
+  // }, []);
+  const [formValues, setFormValues] = useState(defaultValues);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value, });
+  };
+
+  // const handleSliderChange = (name) => (e, value) => {
+  //   setFormValues({ ...formValues, [name]: value, });
+  // };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(formValues);
+    console.log(process.env.REACT_APP_API_URL);
+    const respAPI = postData(process.env.REACT_APP_API_URL + apiRoute, formValues);
+    console.log(respAPI);
+  };
+
   return (
-    <Box
-      component="form"
-      sx={{
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
-      }}
-      noValidate
-      autoComplete="off">
-      <div>
-        <TextField
-          error
-          id="outlined-error"
-          label="Error"
-          defaultValue="Hello World"
-        />
-        <TextField
-          error
-          id="outlined-error-helper-text"
-          label="Error"
-          defaultValue="Hello World"
-          helperText="Incorrect entry."
-        />
-      </div>
-      <div>
-        <TextField
-          error
-          id="filled-error"
-          label="Error"
-          defaultValue="Hello World"
-          variant="filled"
-        />
-        <TextField
-          error
-          id="filled-error-helper-text"
-          label="Error"
-          defaultValue="Hello World"
-          helperText="Incorrect entry."
-          variant="filled"
-        />
-      </div>
-      <div>
-        <TextField
-          error
-          id="standard-error"
-          label="Error"
-          defaultValue="Hello World"
-          variant="standard"
-        />
-        <TextField
-          error
-          id="standard-error-helper-text"
-          label="Error"
-          defaultValue="Hello World"
-          helperText="Incorrect entry."
-          variant="standard"
-        />
-      </div>
-    </Box>
+    <form onSubmit={handleSubmit}>
+      <Grid container alignItems="center" justify="center" direction="column">
+        <Grid item>
+          <TextField id="date-input" name="valueDate" label="Date" type="text" value={formValues.valueDate} onChange={handleInputChange} />
+        </Grid>
+        <Grid item>
+          <TextField id="desc-input" name="description" label="Description" type="text" value={formValues.description} onChange={handleInputChange} />
+        </Grid>
+        <Grid item>
+          <TextField id="amount-input" name="totalAmount" label="Amount" type="number" value={formValues.totalAmount} onChange={handleInputChange} />
+        </Grid>
+        
+        <Grid item>
+          <FormControl>
+            <Select name="category" value={formValues.category} onChange={handleInputChange}>
+              <MenuItem key="bank" value="bank">Bank</MenuItem>
+              <MenuItem key="shops" value="shops">Shops</MenuItem>
+              <MenuItem key="restaurant " value="restaurant">Restaurant</MenuItem>
+              <MenuItem key="others " value="others">Others</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        
+        <Button variant="contained" color="primary" type="submit">Submit</Button>
+      </Grid>
+    </form>
   );
-}
+};
+
+export default CashFlowForm;

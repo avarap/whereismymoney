@@ -32,6 +32,7 @@ router.post("/create", isLoggedIn, async (req, res, next) => {
 
     data.valueDate = req.body.valueDate;
     data.description = req.body.description;
+    data.category = req.body.category;
     data.totalAmount = req.body.totalAmount;
     data.overall = [];
     data.overall.push({ percentage: 100, paid: "True", user: req.user._id });
