@@ -12,7 +12,7 @@ router.get(
 
 router.get('/google/callback',
   passport.authenticate('google', {
-    successRedirect: process.env.CLIENT_PROFILE||'/profile',
+    successRedirect: process.env.CLIENT_ORIGIN,
     failureRedirect: '/login/failed', session: true
   }));
 
@@ -23,10 +23,10 @@ router.get("/login/failed", (req, res) => {
   })
 });
 
-router.get("/success", (req, res) => {
-  console.log("TEST SUCCESS", req.user)
-  res.json(req.user);
-});
+// router.get("/success", (req, res) => {
+//   console.log("TEST SUCCESS", req.user)
+//   res.json(req.user);
+// });
 
 
 router.get("/login/success", (req, res) => {
@@ -44,7 +44,7 @@ router.get("/login/success", (req, res) => {
   }
 });
 
-//   // UserContext REACT
+// //   // UserContext REACT
 // router.get("/getuser", (req, res) => {
 //   res.send(req.user);
 // });
@@ -59,40 +59,53 @@ router.get("/login/success", (req, res) => {
 // 	res.redirect(process.env.CLIENT_URL);
 // });
 
-router.get('/logout', function (req, res){
+// router.get('/logout', function (req, res){
+//   console.log("logout user", req.session)
+//   sessionStore.destroy(req.session, (err) =>{
+//       if(err)console.log(err);
+//       req.logout();
+//       req.session.destroy(function (err) {
+//           if(err) console.log(err);
+//           res.status(200).json({message : 'User Logged Out'});
+//       });
+
+//   });
+
+// });
+
+router.post("/logout", async function (req, res, next) {
+
   console.log("logout user", req.session)
-  sessionStore.destroy(req.session, (err) =>{
-      if(err)console.log(err);
-      req.logout();
-      req.session.destroy(function (err) {
-          if(err) console.log(err);
-          res.status(200).json({message : 'User Logged Out'});
-      });
 
-  });
+  try {
+    req.logOut(req.user, function (err) {
 
+      console.log("logout callback called")
+      // req.session.destroy();
+      if (err) {
+        console.log("error", err)
+        return next(err);
+
+      }
+    });
+
+  } catch (e) {
+    console.log(e)
+  }
+  res.json(req.isAuthenticated())
+  console.log("logout called")
 });
 
-// router.post("/logout", async function (req, res, next) {
-
-//   console.log("logout user", req.session)
-
-//   try {
-//     // req.session.destroy();
-//     req.logOut(req.user, function (err) {
-//       console.log("logout callback called")
-//       if (err) {
-//         console.log("error", err)
-//         return next(err);
-
-//       }
-//     });
-
-//   } catch (e) {
-//     console.log(e)
+// router.get("/logout", (req, res, next) => {
+//   if (req.session) {
+//       req.session.destroy();
+//       res.clearCookie("session-id");
+//       res.redirect("/");
+//   } else {
+//       const err = new Error("You are not logged in!");
+//       err.status = 401;
+//       return next(err);
 //   }
-//   res.json(req.isAuthenticated())
-//   console.log("logout called")
 // });
 
 
