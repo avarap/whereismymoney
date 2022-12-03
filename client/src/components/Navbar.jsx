@@ -55,14 +55,7 @@ export default function Navbar() {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        <Typography sx={{ minWidth: 100 }}><Link to="/">Home</Link></Typography>
-        <Typography sx={{ minWidth: 100 }}><Link to="/profile">Profile</Link></Typography>
         <Typography sx={{ minWidth: 100 }}><Link onClick={logout}>Logout</Link></Typography>
-        {userObject ? (<Typography sx={{ minWidth: 100 }}><Link onClick={logout}>Logout</Link></Typography>) :
-        (<Typography sx={{ minWidth: 100 }}><Link to="/login">Login</Link></Typography>)}
-        {/* {userObject ? (<Avatar sx={{ width: 32, height: 32 }} alt={userObject.displayName} src={`${userObject.picture}`}>{userObject.displayName}</Avatar>)
-                    : (<Avatar sx={{ width: 32, height: 32 }}>M</Avatar>) } */}
-        
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
