@@ -4,7 +4,6 @@ import SignUp from "./pages/SignUp";
 import Login2 from "./pages/Login2";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
-import Navbar from "./components/Navbar"
 import { Routes, Route} from "react-router-dom";
 import { UserContext } from "./contexts/UserContextProvider"
 import {  useContext } from "react";
@@ -67,7 +66,7 @@ function App() {
 				<Route
 					exact
 					path="/profile"
-					element={[<Navbar />, <Profile  />] }
+					element={<Profile  /> }
 				/>
 				<Route
 					exact
