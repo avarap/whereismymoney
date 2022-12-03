@@ -10,8 +10,6 @@ router.get(
     scope: ["profile", "email"],
   }));
 
-
-
 router.get('/google/callback',
   passport.authenticate('google', {
     successRedirect: process.env.CLIENT_ORIGIN,
@@ -32,6 +30,7 @@ router.get("/login/failed", (req, res) => {
 
 
 router.get("/login/success", (req, res) => {
+  console.log(req.user, req.session,req.isAuthenticated());
   if (req.user) {
     res.status(200).json({
       success: true,

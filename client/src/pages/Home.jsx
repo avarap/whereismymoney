@@ -1,4 +1,5 @@
 // import axios from "axios";
+import CashFlowForm from "../components/CashFlowForm";
 
 function Home() {
 	
@@ -21,6 +22,7 @@ function Home() {
 	return (
 		<div >
 			<h1>Homepage</h1>
+			<CashFlowForm/>
 
 			{/* <img
 						src={user.picture}
