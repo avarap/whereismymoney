@@ -20,17 +20,13 @@ const defaultValues = {
   // overall = [];
   // overall.push({ percentage: 100, paid: "True", user: req.user._id });
   picture: "",
+  owner: "",
 };
 
 const apiRoute = "/cashflow/create";
 
 const CashFlowForm = () => {
 
-  // const [beers, setBeers] = useState([]);
-  // const beersData = useFetch(process.env.REACT_APP_API_URL + apiRoute);
-  // useEffect(() => {
-  //   setBeers(beersData);
-  // }, []);
   const [formValues, setFormValues] = useState(defaultValues);
 
   const handleInputChange = (e) => {
@@ -38,14 +34,8 @@ const CashFlowForm = () => {
     setFormValues({ ...formValues, [name]: value, });
   };
 
-  // const handleSliderChange = (name) => (e, value) => {
-  //   setFormValues({ ...formValues, [name]: value, });
-  // };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formValues);
-    console.log(process.env.REACT_APP_API_URL);
     const respAPI = await postData(process.env.REACT_APP_API_URL + apiRoute, formValues);
     console.log(respAPI);
   };

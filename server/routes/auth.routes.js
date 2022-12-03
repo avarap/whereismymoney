@@ -30,6 +30,7 @@ router.get("/login/failed", (req, res) => {
 
 
 router.get("/login/success", (req, res) => {
+  console.log(req.user, req.session,req.isAuthenticated());
   if (req.user) {
     res.status(200).json({
       success: true,

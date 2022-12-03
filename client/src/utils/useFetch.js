@@ -24,16 +24,23 @@ export const useFetch = (url) => {
   return data;
 };
 
+//axios.defaults.withCredentials=true;
+export const getData = async (url) => {
+  try {
+    //console.log(url, data);
+    const response = await axios.get(url, { withCredentials: true });
+    return response.message;
+  } catch (err) {
+    console.log(err.message);
+    return "Error connecting to the API";
+  }
+};
+
 export const postData = async (url, data) => {
   try {
-    console.log(url, data);
-    const response = await axios.post(url, data);
+    //console.log(url, data);
+    const response = await axios.post(url, data,{withCredentials:true});
     return response.message;
-    // .then((response) => {
-    //   fetchBeersCB();
-    //   navigate("/");
-    // })
-    // .catch((e) => console.log("error creating apartment on API", e));
   } catch (err) {
     console.log(err.message);
     return "Error connecting to the API";

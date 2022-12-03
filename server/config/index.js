@@ -1,24 +1,19 @@
 require("dotenv").config();
 const express = require("express");
 const logger = require("morgan");
-const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const session = require("express-session");
 const { MONGO_URI } = require("../db");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const passport = require("passport");
-const User = require("../models/User.model");
-const favicon = require("serve-favicon");
+const { initializePassport } = require("./passport");
 
 const app = express();
 
 const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || "http://localhost:3000";
 
 //DBStore
-const store = new MongoDBStore({
-  uri: MONGO_URI,
-  collection: "sessions",
-});
+const store = new MongoDBStore({ uri: MONGO_URI, collection: "sessions", });
 
 // Middleware configuration
 module.exports = (app) => {
@@ -37,70 +32,27 @@ module.exports = (app) => {
 
   // In development environment the app logs
   app.use(logger("dev"));
-
   // To have access to `body` property in the request
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
-  app.use(cookieParser());
-  
+
+  initializePassport();
+
   app.use(
     session({
       secret: process.env.SESSION_SECRET,
       cookie: {
+        httpOnly: true,
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+        secure: process.env.NODE_ENV === "production",
       },
       store: store,
       resave: true,
-      saveUninitialized: true,
+      saveUninitialized: false,
     })
   );
 
-  //Get the GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET from Google Developer Console
-  const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
-  const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
-
-  const GoogleStrategy = require("passport-google-oauth20").Strategy;
-  // console.log(process.env.GOOGLE_CALLBACK_URL);
-
-  passport.use(
-    new GoogleStrategy(
-      {
-        clientID: `${process.env.GOOGLE_CLIENT_ID}`,
-        clientSecret: `${process.env.GOOGLE_CLIENT_SECRET}`,
-        callbackURL: `${process.env.GOOGLE_CALLBACK_URL}`,
-        passReqToCallback: true,
-        scope: ['profile', 'email'],
-      },
-
-      // MOngoDB (called on succesful authentication)
-      function (req, accessToken, refreshToken, profile, cb) {
-        User.findOrCreate({ googleId: profile.id, email: profile.emails[0].value, displayName: profile.displayName }, function (err, user) {
-          const googleUser = {
-            googleId: profile.id,
-            displayName: profile.displayName,
-            picture: profile.photos[0].value,
-            email: profile.emails[0].value,
-          };
-          // console.log(googleUser)
-          // console.log(user)
-          return cb(err, googleUser);
-          
-        });
-      }
-    )
-  );
-
-  passport.serializeUser(function (user, done) {
-    // console.log("A", user);
-    return done(null, user);
-  });
-
-  passport.deserializeUser(function (user, done) {
-    // console.log("B", user);
-    return done(null, user);
-  });
-
   app.use(passport.initialize()); // init passport on every route call
   app.use(passport.session()); //allow passport to use "express-session"
-
 };
