@@ -25,8 +25,9 @@ router.get("/", isLoggedIn, async (req, res, next) => {
   }
 });
 
-router.post("/create", isLoggedIn, async (req, res, next) => {
-  //console.log(req.body);
+router.post("/create", async (req, res, next) => {
+  console.log(req);
+  console.log(req.body);
   try {
     const data = new Cashflow();
 

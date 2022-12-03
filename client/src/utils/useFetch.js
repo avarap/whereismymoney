@@ -26,8 +26,9 @@ export const useFetch = (url) => {
 
 export const postData = async (url, data) => {
   try {
+    console.log(url, data);
     const response = await axios.post(url, data);
-    return response;
+    return response.message;
     // .then((response) => {
     //   fetchBeersCB();
     //   navigate("/");

@@ -42,11 +42,11 @@ const CashFlowForm = () => {
   //   setFormValues({ ...formValues, [name]: value, });
   // };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formValues);
     console.log(process.env.REACT_APP_API_URL);
-    const respAPI = postData(process.env.REACT_APP_API_URL + apiRoute, formValues);
+    const respAPI = await postData(process.env.REACT_APP_API_URL + apiRoute, formValues);
     console.log(respAPI);
   };
 
