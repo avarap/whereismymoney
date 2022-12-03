@@ -1,14 +1,29 @@
 import React from 'react'
-import axios from "axios"
-import { useNavigate } from "react-router-dom"
-import { useContext } from 'react';
+import { useContext, navigate } from 'react';
 import { UserContext } from '../contexts/UserContextProvider';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import axios from "axios";
+
+
+
+import Avatar from '@mui/material/Avatar';
+
+const Item = styled(Paper)(({ theme }) => ({
+	backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+	...theme.typography.body2,
+	padding: theme.spacing(1),
+	textAlign: 'left',
+	color: theme.palette.text.secondary,
+  }));
 
 function Profile() {
 
 	const { userObject } = useContext(UserContext);
 
-	const navigate = useNavigate();
 
 	function logout() {
 		axios({ method: "POST", url: `${process.env.REACT_APP_API_URL}/auth/logout`, withCredentials: true })
@@ -22,32 +37,59 @@ function Profile() {
 
 	}
 
+	
+
 	return (
-		<div>
-			{
+		<>
+
+<Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2} 
+sx={{
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'center',
+	px: [10],
+	p: 20
+  }}>
+  <Box gridColumn="span 8">
+    <Item>
+	<Grid container spacing={4}
+	
+	sx={{
+		p: 10
+	  }}>
+        <Grid item>
+		{	userObject ? (
+				<>
+					<Avatar sx={{ width: 150, height: 150 }} src={`${userObject.picture}`}></Avatar>
+				</>
+				) : (
+					<Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+				) 
+			}
+        </Grid>
+		<Grid item>
+	{
 				userObject ? (
-					<h1>Welcome back {userObject.googleId}</h1>
+					<>
+					<h1>Welcome back {userObject.displayName}</h1>
+					<p>You are logged in with: {userObject.email}</p>
+					<Button variant="contained" onClick={logout}>Log Out</Button>
+					</>
 				) : (
 					<h1>Welcome To MY Website</h1>
 				)
 			}
+			</Grid>
+	</Grid>
+	</Item>
+  </Box>
+</Box>
 
-			<button onClick={logout}>Log Out</button>
-		</div>
-		// <div >
-		// 	<h1>Profile page: {userObject.googleId}</h1>
-		// 	{/* {{userObject} ? (<p>{userObject.googleId}</p>) : ("Hasta la vista")} */}
 
-		// 	<img
-		// 				// src={user.picture}
-		// 				alt="profile"
-		// 				className="picture-home"
-		// 			/>
-		// 	<button  onClick={logout}>
-		// 				Log Out
-		// 			</button>
-		// </div>
-	);
-}
+			
+		</>
+	)
+		}
+
 
 export default Profile;

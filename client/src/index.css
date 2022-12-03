@@ -12,8 +12,16 @@ code {
     monospace;
 }
 
+a {
+  text-decoration: none;
+}
+
+/* .css-1lojo64-MuiTypography-root {
+  margin-right: 10px;
+} */
+
 .css-5nwj3y {
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
   color:azure;
   justify-content: flex-end;
     flex-direction: row;

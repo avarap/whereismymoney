@@ -12,9 +12,16 @@ import Tooltip from '@mui/material/Tooltip';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { Link } from "react-router-dom";
-// import axios from 'axios';
+import axios from 'axios';
+import { useContext } from 'react';
+import { UserContext } from '../contexts/UserContextProvider';
+import { useNavigate } from "react-router-dom"
+
+
 
 export default function Navbar() {
+
+  const { userObject } = useContext(UserContext);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -25,11 +32,25 @@ export default function Navbar() {
     setAnchorEl(null);
   };
 
+  
 
+	const navigate = useNavigate();
 
-const logout = () => {
-  window.open("http://localhost:5005/auth/logout", "_self");
-};
+	function logout() {
+		axios({ method: "POST", url: `${process.env.REACT_APP_API_URL}/auth/logout`, withCredentials: true })
+			.then((response) => {
+				console.log("response status", response)
+				if (response.status === 200) {
+					navigate("/login");
+					return null;
+				}
+			})
+
+	}
+
+// const logout = () => {
+//   window.open("http://localhost:5005/auth/logout", "_self");
+// };
 
   return (
     <React.Fragment>
@@ -37,9 +58,9 @@ const logout = () => {
         <Typography sx={{ minWidth: 100 }}><Link to="/">Home</Link></Typography>
         <Typography sx={{ minWidth: 100 }}><Link to="/profile">Profile</Link></Typography>
         <Typography sx={{ minWidth: 100 }}><Link onClick={logout}>Logout</Link></Typography>
-        {/* {{user} ? (<Typography sx={{ minWidth: 100 }}><Link onClick={logout}>Logout</Link></Typography>) :
+        {userObject ? (<Typography sx={{ minWidth: 100 }}><Link onClick={logout}>Logout</Link></Typography>) :
         (<Typography sx={{ minWidth: 100 }}><Link to="/login">Login</Link></Typography>)}
-        {user ? (<Avatar sx={{ width: 32, height: 32 }} alt={user.displayName} src={user.photos[0].value}>{user.displayName}</Avatar>)
+        {/* {userObject ? (<Avatar sx={{ width: 32, height: 32 }} alt={userObject.displayName} src={`${userObject.picture}`}>{userObject.displayName}</Avatar>)
                     : (<Avatar sx={{ width: 32, height: 32 }}>M</Avatar>) } */}
         
         <Tooltip title="Account settings">
@@ -51,7 +72,9 @@ const logout = () => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            {/* <Typography sx={{ minWidth: 100 }}>Welcome, {userObject.displayName}</Typography> */}
+            {userObject ? (<Avatar sx={{ width: 32, height: 32 }} alt={userObject.displayName} src={`${userObject.picture}`}>{userObject.displayName}</Avatar>)
+                    : (<Avatar sx={{ width: 32, height: 32 }}>M</Avatar>) }
           </IconButton>
         </Tooltip>
       </Box>
@@ -107,7 +130,7 @@ const logout = () => {
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          Logout
+          <Typography sx={{ minWidth: 100 }}><Link onClick={logout}>Logout</Link></Typography>
         </MenuItem>
       </Menu>
     </React.Fragment>
