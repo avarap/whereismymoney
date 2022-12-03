@@ -10,12 +10,12 @@ module.exports = {
     const GoogleStrategy = require("passport-google-oauth20").Strategy;
     // console.log(process.env.GOOGLE_CALLBACK_URL);
     passport.serializeUser(function (user, done) {
-      console.log("A", user);
+      //console.log("A", user);
       return done(null, user);
     });
 
     passport.deserializeUser(function (user, done) {
-      console.log("B", user);
+      //console.log("B", user);
       return done(null, user);
     });
 
