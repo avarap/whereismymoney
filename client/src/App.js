@@ -7,47 +7,9 @@ import Dashboard from "./pages/Dashboard";
 import { Routes, Route} from "react-router-dom";
 import { UserContext } from "./contexts/UserContextProvider"
 import {  useContext } from "react";
-// import axios from "axios";
-
-import "./App.css";
 
 function App() {
 	const {userObject} = useContext(UserContext);
-	console.log(userObject)
-
-	// const [user, setUser] = useState(null);
-	// // const [test, setTest] = useState(null);
-
-	// const getUser = async () => {
-	// 	try {
-	// 		const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
-	// 		const { data } = await axios.get(url, { withCredentials: true });
-	// 		console.log(data)
-	// 		setUser(data.user);
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 	}
-	// };
-
-	// const checkSuccess = async () => {
-	// 	try {
-	// 		const url = `${process.env.REACT_APP_API_URL}/auth/success`;
-	// 		const { data } = await axios.get(url, { withCredentials: true });
-	// 		console.log(data)
-	// 		setTest(data);
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 	}
-	// };
-
-	// useEffect(() => {
-	// 	getUser();
-	// 	checkSuccess();
-	// }, []);
-
-	// useEffect(() => {
-	// 	console.log("Here is the user", user)
-	// }, [user]);
 
 	return (
 		<div className="container">
