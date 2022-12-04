@@ -8,9 +8,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import axios from "axios";
 
-
-
 import Avatar from '@mui/material/Avatar';
+import Layout from './layout';
 
 const Item = styled(Paper)(({ theme }) => ({
 	backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -40,55 +39,58 @@ function Profile() {
 	
 
 	return (
-		<>
-
-<Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2} 
-sx={{
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-	px: [10],
-	p: 20
-  }}>
-  <Box gridColumn="span 8">
-    <Item>
-	<Grid container spacing={4}
-	
-	sx={{
-		p: 10
-	  }}>
-        <Grid item>
-		{	userObject ? (
-				<>
-					<Avatar sx={{ width: 150, height: 150 }} src={`${userObject.picture}`}></Avatar>
-				</>
-				) : (
-					<Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
-				) 
-			}
-        </Grid>
-		<Grid item>
-	{
-				userObject ? (
-					<>
-					<h1>Welcome back {userObject.displayName}</h1>
-					<p>You are logged in with: {userObject.email}</p>
-					<Button variant="contained" onClick={logout}>Log Out</Button>
-					</>
-				) : (
-					<h1>Welcome To MY Website</h1>
-				)
-			}
-			</Grid>
-	</Grid>
-	</Item>
-  </Box>
-</Box>
-
-
-			
-		</>
-	)
+    <Layout>
+      <Box
+        display="grid"
+        gridTemplateColumns="repeat(12, 1fr)"
+        gap={2}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          px: [10],
+          p: 20,
+        }}>
+        <Box gridColumn="span 8">
+          <Item>
+            <Grid
+              container
+              spacing={4}
+              sx={{
+                p: 10,
+              }}>
+              <Grid item>
+                {userObject ? (
+                  <>
+                    <Avatar
+                      sx={{ width: 150, height: 150 }}
+                      src={`${userObject.picture}`}></Avatar>
+                  </>
+                ) : (
+                  <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                )}
+              </Grid>
+              <Grid item>
+                {userObject ? (
+                  <>
+                    <h1>Welcome back {userObject.displayName}</h1>
+                    <p>You are logged in with: {userObject.email}</p>
+                    <Button
+                      variant="contained"
+                      onClick={logout}>
+                      Log Out
+                    </Button>
+                  </>
+                ) : (
+                  <h1>Welcome To MY Website</h1>
+                )}
+              </Grid>
+            </Grid>
+          </Item>
+        </Box>
+      </Box>
+    </Layout>
+  );
 		}
 
 
