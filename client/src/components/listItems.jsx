@@ -9,22 +9,24 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import LogoutIcon from '@mui/icons-material/Logout';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton>
+    <ListItemButton component="a" href="/dashboard">
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
+    <ListItemButton href="/cashflow">
+      <ListItemIcon >
         <ShoppingCartIcon />
       </ListItemIcon>
-      <ListItemText primary="Expenses" />
+      <ListItemText primary="Cashflow" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton href="/friends">
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
@@ -67,6 +69,26 @@ export const secondaryListItems = (
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Year-end sale" />
+    </ListItemButton>
+  </React.Fragment>
+);
+
+export const tertiaryListItems = (
+  <React.Fragment>
+    <ListSubheader component="div" inset>
+      Settings
+    </ListSubheader>
+    <ListItemButton href="/profile">
+      <ListItemIcon>
+        <AccountBoxIcon />
+      </ListItemIcon>
+      <ListItemText primary="Profile" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <LogoutIcon />
+      </ListItemIcon>
+      <ListItemText primary="Logout" />
     </ListItemButton>
   </React.Fragment>
 );

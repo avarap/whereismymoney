@@ -1,6 +1,6 @@
 import React from 'react'
 import Chart from '../components/Chart';
-import Deposits from '../components/Deposits';
+// import Deposits from '../components/Deposits';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import Orders from '../components/Orders';
@@ -11,7 +11,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 
 
-function Dashboard() {
+function Friends() {
 
     function Copyright(props) {
 		return (
@@ -41,21 +41,10 @@ function Dashboard() {
           }}
         >
           <Toolbar />
-
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          <Typography
-              component="h1"
-              variant="h3"
-              color="inherit"
-              marginBottom="20px"
-              noWrap
-              sx={{ flexGrow: 2 }}
-            >
-              Dashboard
-            </Typography>
             <Grid container spacing={3}>
               {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
+              <Grid item xs={12}>
                 <Paper
                   sx={{
                     p: 2,
@@ -65,19 +54,6 @@ function Dashboard() {
                   }}
                 >
                   <Chart />
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Deposits />
                 </Paper>
               </Grid>
               {/* Recent Orders */}
@@ -94,4 +70,4 @@ function Dashboard() {
   )
 }
 
-export default  Dashboard;
+export default Friends;

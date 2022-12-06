@@ -7,10 +7,17 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import axios from "axios";
+import Toolbar from '@mui/material/Toolbar';
+import Container from '@mui/material/Container';
+import Orders from '../components/Orders';
+import Typography from '@mui/material/Typography';
 
-
+// import ProfileBar from "../components/ProfileBar"
 
 import Avatar from '@mui/material/Avatar';
+
+
+
 
 const Item = styled(Paper)(({ theme }) => ({
 	backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -39,25 +46,47 @@ function Profile() {
 
 	
 
+	
+
 	return (
 		<>
 
-<Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2} 
-sx={{
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-	px: [10],
-	p: 20
-  }}>
-  <Box gridColumn="span 8">
-    <Item>
-	<Grid container spacing={4}
-	
-	sx={{
-		p: 10
-	  }}>
-        <Grid item>
+<Box
+          component="main"
+          sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === 'light'
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
+            flexGrow: 1,
+            height: '100vh',
+            overflow: 'auto',
+          }}
+        >
+          <Toolbar />
+          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+		  <Typography
+              component="h1"
+              variant="h3"
+              color="inherit"
+              marginBottom="20px"
+              noWrap
+              sx={{ flexGrow: 2 }}
+            >
+              Profile
+            </Typography>
+            <Grid container spacing={4}>
+              {/* Profile information */}
+              <Grid item xs={12}>
+                <Paper
+                  sx={{
+                    p: 8,
+                    display: 'flex',
+                    flexDirection: 'row',
+                    height: 350,
+                  }}
+                >
+                  <Grid item>
 		{	userObject ? (
 				<>
 					<Avatar sx={{ width: 150, height: 150 }} src={`${userObject.picture}`}></Avatar>
@@ -80,13 +109,18 @@ sx={{
 				)
 			}
 			</Grid>
-	</Grid>
-	</Item>
-  </Box>
-</Box>
-
-
-			
+                </Paper>
+              </Grid>
+              {/* Recent Orders */}
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                  <Orders />
+                </Paper>
+              </Grid>
+            </Grid>
+            {/* <Copyright sx={{ pt: 4 }} /> */}
+          </Container>
+        </Box>
 		</>
 	)
 		}
