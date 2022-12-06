@@ -29,7 +29,7 @@ export const getData = async (url) => {
   try {
     //console.log(url, data);
     const response = await axios.get(url, { withCredentials: true });
-    return response.message;
+    return response;
   } catch (err) {
     console.log(err.message);
     return "Error connecting to the API";
@@ -40,7 +40,7 @@ export const postData = async (url, data) => {
   try {
     //console.log(url, data);
     const response = await axios.post(url, data,{withCredentials:true});
-    return response.message;
+    return response;
   } catch (err) {
     console.log(err.message);
     return "Error connecting to the API";
