@@ -10,7 +10,6 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 // import Slider from "@mui/material/Slider";
 import Button from "@mui/material/Button";
-import Paper from "@mui/material/Paper";
 import InputLabel from "@mui/material/InputLabel";
 import { postData } from "../utils/useFetch";
 
