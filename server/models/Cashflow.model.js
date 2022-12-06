@@ -5,6 +5,7 @@ const cashFlowSchema = new Schema(
   {
     valueDate: Date,
     description: String,
+    category: String,
     totalAmount: Number,
     overall: [
       {

@@ -10,8 +10,6 @@ router.get(
     scope: ["profile", "email"],
   }));
 
-
-
 router.get('/google/callback',
   passport.authenticate('google', {
     successRedirect: process.env.CLIENT_ORIGIN,
@@ -32,6 +30,7 @@ router.get("/login/failed", (req, res) => {
 
 
 router.get("/login/success", (req, res) => {
+  console.log(req.user, req.session,req.isAuthenticated());
   if (req.user) {
     res.status(200).json({
       success: true,
@@ -76,13 +75,11 @@ router.get("/login/success", (req, res) => {
 // });
 
 router.post("/logout", async function (req, res, next) {
-
-  console.log("logout user", req.session)
-
+  //console.log("logout user", req.session)
   try {
     req.logOut(req.user, function (err) {
 
-      console.log("logout callback called")
+      //console.log("logout callback called")
       // req.session.destroy();
       if (err) {
         console.log("error", err)
@@ -95,7 +92,7 @@ router.post("/logout", async function (req, res, next) {
     console.log(e)
   }
   res.json(req.isAuthenticated())
-  console.log("logout called")
+  //console.log("logout called")
 });
 
 // router.get("/logout", (req, res, next) => {
