@@ -38,6 +38,7 @@ const CashFlowForm = () => {
     event.preventDefault();
     const respAPI = await postData(process.env.REACT_APP_API_URL + apiRoute, formValues);
     console.log(respAPI);
+    setFormValues(defaultValues);
   };
 
   return (
