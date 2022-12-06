@@ -10,6 +10,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 // import Slider from "@mui/material/Slider";
 import Button from "@mui/material/Button";
+import InputLabel from "@mui/material/InputLabel";
 import { postData } from "../utils/useFetch";
 
 const defaultValues = {
@@ -44,24 +45,26 @@ const CashFlowForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <Grid container alignItems="center" justify="center" direction="column">
-        <Paper sx={{ p: 2, display: "flex", flexDirection: "row", height: 540 }}>
-            <Grid item xs={12} md={8} lg={9}>              
-                  <TextField id="date-input" name="valueDate" label="Date" type="text" value={formValues.valueDate} onChange={handleInputChange} />
-                  <TextField id="desc-input" name="description" label="Description" type="text" value={formValues.description} onChange={handleInputChange} />
-                  <TextField id="amount-input" name="totalAmount" label="Amount" type="number" value={formValues.totalAmount} onChange={handleInputChange} />
-                  <FormControl>
-                    <Select name="category" value={formValues.category} onChange={handleInputChange}>
+        {/* <Paper sx={{ p: 2, display: "flex", flexDirection: "row", height: 540 }}> */}
+            <Grid item xs={12} md={8} lg={9} sx={{display: "flex"}}>              
+                  <TextField id="date-input" name="valueDate" label="Date" type="text" value={formValues.valueDate} onChange={handleInputChange} sx={{ m: 1}} />
+                  <TextField id="desc-input" name="description" label="Description" type="text" value={formValues.description} onChange={handleInputChange} sx={{ m: 1 }} />
+                  <TextField id="amount-input" name="totalAmount" label="Amount" type="number" value={formValues.totalAmount} onChange={handleInputChange} sx={{ m: 1 }} />
+                  <FormControl sx={{ m: 1, minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-label">Categories</InputLabel>
+                    <Select name="category" label="Date" value={formValues.category} onChange={handleInputChange}>
                       <MenuItem key="bank" value="bank">Bank</MenuItem>
                       <MenuItem key="shops" value="shops">Shops</MenuItem>
                       <MenuItem key="restaurant " value="restaurant">Restaurant</MenuItem>
                       <MenuItem key="others " value="others">Others</MenuItem>
                     </Select>
-                  </FormControl>              
+                  </FormControl> 
+                  <Button variant="contained" color="primary" type="submit" sx={{ m: 1 }}>Submit</Button>             
             </Grid>
-            <Grid item xs={12} md={8} lg={9}>
+            {/* <Grid item xs={12} md={8} lg={9}>
               <Button variant="contained" color="primary" type="submit">Submit</Button>
-            </Grid>
-        </Paper>
+            </Grid> */}
+        {/* </Paper> */}
       </Grid>
     </form>
   );
