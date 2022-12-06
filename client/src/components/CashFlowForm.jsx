@@ -38,33 +38,30 @@ const CashFlowForm = () => {
     event.preventDefault();
     const respAPI = await postData(process.env.REACT_APP_API_URL + apiRoute, formValues);
     console.log(respAPI);
+    setFormValues(defaultValues);
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <Grid container alignItems="center" justify="center" direction="column">
-        <Grid item>
-          <TextField id="date-input" name="valueDate" label="Date" type="text" value={formValues.valueDate} onChange={handleInputChange} />
-        </Grid>
-        <Grid item>
-          <TextField id="desc-input" name="description" label="Description" type="text" value={formValues.description} onChange={handleInputChange} />
-        </Grid>
-        <Grid item>
-          <TextField id="amount-input" name="totalAmount" label="Amount" type="number" value={formValues.totalAmount} onChange={handleInputChange} />
-        </Grid>
-        
-        <Grid item>
-          <FormControl>
-            <Select name="category" value={formValues.category} onChange={handleInputChange}>
-              <MenuItem key="bank" value="bank">Bank</MenuItem>
-              <MenuItem key="shops" value="shops">Shops</MenuItem>
-              <MenuItem key="restaurant " value="restaurant">Restaurant</MenuItem>
-              <MenuItem key="others " value="others">Others</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-        
-        <Button variant="contained" color="primary" type="submit">Submit</Button>
+        <Paper sx={{ p: 2, display: "flex", flexDirection: "row", height: 540 }}>
+            <Grid item xs={12} md={8} lg={9}>              
+                  <TextField id="date-input" name="valueDate" label="Date" type="text" value={formValues.valueDate} onChange={handleInputChange} />
+                  <TextField id="desc-input" name="description" label="Description" type="text" value={formValues.description} onChange={handleInputChange} />
+                  <TextField id="amount-input" name="totalAmount" label="Amount" type="number" value={formValues.totalAmount} onChange={handleInputChange} />
+                  <FormControl>
+                    <Select name="category" value={formValues.category} onChange={handleInputChange}>
+                      <MenuItem key="bank" value="bank">Bank</MenuItem>
+                      <MenuItem key="shops" value="shops">Shops</MenuItem>
+                      <MenuItem key="restaurant " value="restaurant">Restaurant</MenuItem>
+                      <MenuItem key="others " value="others">Others</MenuItem>
+                    </Select>
+                  </FormControl>              
+            </Grid>
+            <Grid item xs={12} md={8} lg={9}>
+              <Button variant="contained" color="primary" type="submit">Submit</Button>
+            </Grid>
+        </Paper>
       </Grid>
     </form>
   );
