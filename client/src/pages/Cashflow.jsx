@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import CashFlowForm from '../components/CashFlowForm';
 
 
 function Cashflow() {
@@ -43,17 +44,27 @@ function Cashflow() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              {/* Chart */}
+              {/* Form */}
               <Grid item xs={12}>
                 <Paper
                   sx={{
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    justifyContent: "center",
+                    height: 180,
                   }}
                 >
-                  <Chart />
+                  <Typography
+              component="h2"
+              variant="h5"
+              color="inherit"
+              noWrap
+              sx={{ flexGrow: 2 }}
+            >
+              Add a new expense
+            </Typography>
+                  <CashFlowForm />
                 </Paper>
               </Grid>
               {/* Recent Orders */}
