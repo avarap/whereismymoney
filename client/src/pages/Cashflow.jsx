@@ -44,7 +44,7 @@ function Cashflow() {
           <Typography component="h2" variant="h5" color="inherit" noWrap sx={{ flexGrow: 2 }}>
             Add a new expense
           </Typography>
-          <CashFlowForm setFormValues={setFormValues} />
+          <CashFlowForm  />
         </Paper>
       </Grid>
       {/* Recent Expenses */}
