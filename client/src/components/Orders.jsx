@@ -6,6 +6,11 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Title from './Title';
+import SearchForm from '../components/SearchForm';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EditIcon from '@mui/icons-material/Edit';
+
+
 
 // Generate Order Data
 function createData(id, date, name, shipTo, paymentMethod, amount) {
@@ -56,13 +61,15 @@ export default function Orders() {
   return (
     <React.Fragment>
       <Title>Recent Expenses</Title>
+      <SearchForm />
       <Table size="small">
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
             <TableCell>Description</TableCell>
             <TableCell>Category</TableCell>
-            <TableCell align="right">Amount</TableCell>
+            <TableCell>Amount</TableCell>
+            <TableCell align="right">Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -71,7 +78,8 @@ export default function Orders() {
               <TableCell>{row.date}</TableCell>
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.shipTo}</TableCell>
-              <TableCell align="right">{`$${row.amount}`}</TableCell>
+              <TableCell>{`$${row.amount}`}</TableCell>
+              <TableCell align="right"><DeleteForeverIcon sx={{ color: "#d63031" }} /><EditIcon sx={{ color: "#00b894" }} /></TableCell>
             </TableRow>
           ))}
         </TableBody>
