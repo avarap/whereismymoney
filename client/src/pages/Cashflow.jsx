@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Orders from "../components/Orders";
+// import Orders from "../components/Orders";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import CashFlowForm from "../components/CashFlowForm";
 import { getData } from "../utils/useFetch";
+import MaterialTable from "../components/MaterialTable";
 
 const defaultValues = [{
   valueDate: "",
@@ -43,13 +44,13 @@ function Cashflow() {
           <Typography component="h2" variant="h5" color="inherit" noWrap sx={{ flexGrow: 2 }}>
             Add a new expense
           </Typography>
-          <CashFlowForm />
+          <CashFlowForm setFormValues={setFormValues} />
         </Paper>
       </Grid>
-      {/* Recent Orders */}
+      {/* Recent Expenses */}
       <Grid item xs={12}>
         <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-          {data ? <Orders {...{data}}/> : <></>}
+        {data ? <MaterialTable {...{data}}/> : <></>}
         </Paper>
       </Grid>
     </>

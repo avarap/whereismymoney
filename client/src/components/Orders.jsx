@@ -6,6 +6,11 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Title from './Title';
+import SearchForm from '../components/SearchForm';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EditIcon from '@mui/icons-material/Edit';
+
+
 
 
 function preventDefault(event) {
@@ -17,13 +22,15 @@ export default function Orders({data}) {
   return (
     <React.Fragment>
       <Title>Recent Expenses</Title>
+      <SearchForm />
       <Table size="small">
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
             <TableCell>Description</TableCell>
             <TableCell>Category</TableCell>
-            <TableCell align="right">Amount</TableCell>
+            <TableCell>Amount</TableCell>
+            <TableCell align="right">Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
