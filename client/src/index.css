@@ -1,10 +1,11 @@
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
 }
 
 code {
@@ -14,28 +15,28 @@ code {
 
 a {
   text-decoration: none;
-}
+} */
 
 /* .css-1lojo64-MuiTypography-root {
   margin-right: 10px;
 } */
 
-.css-5nwj3y {
+/* .css-5nwj3y {
   /* background-color: blueviolet; */
-  color:azure;
+  /* color:azure;
   justify-content: flex-end;
     flex-direction: row;
-}
+} */
 
-.css-5nwj3y a {
+/* .css-5nwj3y a {
   color:azure;
   text-decoration: none;
-}
-.css-5nwj3y a:hover {
+} */
+/* .css-5nwj3y a:hover {
   color:rgb(37, 223, 223);
 }
 
 .picture-home {
   width: 32px;
   height: 32px;
-}
+} */ 
