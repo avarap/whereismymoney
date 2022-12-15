@@ -4,7 +4,7 @@ import { Colors } from "../styles/Theme";
 
 
   export const TestimonialContainer = styled(Box)(({ theme }) => ({
-    backgroundColor: Colors.light_pink, 
+    backgroundColor: Colors.body_bg, 
     display: "flex", 
     flexWrap: "wrap", 
     padding: " 60px 15px 100px 15px",

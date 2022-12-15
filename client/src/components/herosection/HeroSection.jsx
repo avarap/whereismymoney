@@ -42,7 +42,7 @@ function HeroSection() {
         </Stars>
         <BannerButton color="primary" onClick={googleAuth}><GoogleIcon style={{marginRight: "10px"}} />  SIGN UP WITH GOOGLE </BannerButton>
       </BannerContent>
-      <BannerImage src="./images/prueba.jpg" />
+      <BannerImage src="./images/pic1.png" />
       </BannerRow>
     </BannerContainer>
   );

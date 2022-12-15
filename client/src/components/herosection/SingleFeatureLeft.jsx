@@ -18,13 +18,13 @@ function SingleFeatureRight() {
       <BannerRow>
       <BannerContent>
         <BannerTitle variant="h2">
-          Managing money, made simple
+          Make conscious decisions in minutes
         </BannerTitle>
         <BannerDescription >
         Einkaufen wirkt sich auf den Planeten aus. Wenn du ein Klarna Bankkonto eröffnest, erhältst du eine Klarna Bankkarte für dein alltägliches Shopping.
         </BannerDescription>
       </BannerContent>
-      <BannerImage src="./images/prueba.jpg" />
+      <BannerImage src="./images/pic2.png" />
       </BannerRow>
     </BannerContainer>
   );

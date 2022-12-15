@@ -3,8 +3,8 @@ import { createTheme } from "@mui/material/styles";
 export const DrawerWidth = 250;
 
 export const Colors = {
-  primary: "#5f2c3e",
-  secondary: "#d1adcc",
+  primary: "#5624D0",
+  secondary: "#CEFF1A",
   success: "#4CAF50",
   info: "#00a2ff",
   danger: "#FF5722",
@@ -16,19 +16,13 @@ export const Colors = {
   inverse: "#2F3D4A",
   shaft: "#333",
   ///////////////
-  // Grays
+  // Background
   ///////////////
-  dim_grey: "#696969",
-  dove_gray: "#d5d5d5",
-  body_bg: "#f3f6f9",
-  light_gray: "rgb(230,230,230)",
-  light_pink: "#FFF3FF",
-  light_blue: "#d9f0fc",
-  ///////////////
-  // Solid Color
-  ///////////////
+  body_bg: "#FFFDFA",
   white: "#fff",
   black: "#000",
+  light_pink: "#FFF3FF",
+  
 };
 
 const theme = createTheme({

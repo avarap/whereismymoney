@@ -8,7 +8,7 @@ export const BannerContainer = styled(Box)(({ matches, theme }) => ({
   width: "100%",
   height: "100%",
   padding: "60px 0",
-  background: Colors.light_pink,
+  background: Colors.body_bg,
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
     alignItems: "center",
@@ -26,7 +26,6 @@ export const BannerRow = styled(Box)(({ matches, theme }) => ({
   height: "100%",
   padding: '0 12px',
 
-  background: Colors.light_pink,
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
     alignItems: "center",
@@ -40,7 +39,6 @@ export const Stars = styled(Box)(({ matches, theme }) => ({
   marginBottom: "30px",
   fontSize: "1.25rem",
   lineHeight: "1.6",
-  // letterSpacing: "0.0075em",
 }));
 
 export const UserRating = styled(Rating)(({ matches, theme }) => ({

@@ -6,8 +6,9 @@ import { Colors } from "./Theme";
 export const AppbarOuterContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
-  background: Colors.light_pink,
+  background: Colors.body_bg,
   padding: '0 12px',
+  
   [theme.breakpoints.down("md")]: {
     display: 'flex',
     flexDirection: "column",
@@ -20,7 +21,6 @@ export const AppbarInnerContainer = styled(Box)(({ theme }) => ({
   marginTop: 0,
   justifyContent: 'space-between',
   padding: '15px 8px',
-  background: Colors.light_pink,
   width: "1200px",
   [theme.breakpoints.between("md", "lg")]: {
     width: "100%",

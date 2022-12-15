@@ -44,7 +44,7 @@ function CustomerTestimonials() {
       <TestimonialGridContainer container spacing={7}>
         {reviews.map((review) => (
           <Grid item md={9} lg={3}>
-            <TestimonialItem>
+            <TestimonialItem elevation={3}>
               <TestimonialBox>
                 <UserBox>
                   <Box key={review.name}>

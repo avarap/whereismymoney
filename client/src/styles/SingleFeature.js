@@ -8,7 +8,7 @@ export const BannerContainer = styled(Box)(({ matches, theme }) => ({
   width: "100%",
   height: "100%",
   padding: "60px 0",
-  background: Colors.light_pink,
+  background: Colors.body_bg,
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
     alignItems: "center",
