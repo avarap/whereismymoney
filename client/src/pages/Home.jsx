@@ -1,38 +1,24 @@
-// import axios from "axios";
-import CashFlowForm from "../components/CashFlowForm";
-import MaterialTable from "../components/MaterialTable";
+import HeroSection from "../components/herosection/HeroSection";
+import NavbarDesktop from "../components/herosection/NavbarDesktop";
+import SingleFeatureRight from "../components/herosection/SingleFeatureRight";
+import SingleFeatureLeft from "../components/herosection/SingleFeatureLeft";
+import CustomerTestimonials from "../components/herosection/CustomerTestimonials";
+import Footer from "../components/herosection/Footer";
+import CTA from "../components/herosection/CTA";
 
 function Home() {
 	
-	// const user = userDetails.user;
-	// const logout = () => {
-	// 	window.open(`${process.env.REACT_APP_API_URL}/auth/logout`, "_self");
-	// };
-
-	
-
-	// async function logout() {
-	// 	try {
-	// 		const response = await axios({ method: "POST", url: `${process.env.REACT_APP_API_URL}/auth/logout`, withCredentials: true })
-	// 		console.log(response)
-	// 	} catch (error) {
-	// 		console.log(error)
-	// 	}
-	// }
 	
 	return (
-		<div >
-			<h1>Homepage</h1>
-			<CashFlowForm/>
-			<MaterialTable/>
-
-			{/* <img
-						src={user.picture}
-						alt="profile"
-						className="picture-home"
-					/> */}
-			
-		</div>
+		<>
+			<NavbarDesktop />
+			<HeroSection />
+			<CustomerTestimonials />
+			<SingleFeatureRight />
+			<SingleFeatureLeft />
+			<CTA />
+			<Footer />
+		</>
 	);
 }
 

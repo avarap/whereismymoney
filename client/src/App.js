@@ -10,9 +10,6 @@ import DashboardLayout from "./pages/DashboardLayout";
 import { Routes, Route} from "react-router-dom";
 import { UserContext } from "./contexts/UserContextProvider"
 import {  useContext } from "react";
-// import axios from "axios";
-
-import "./App.css";
 
 
 function App() {
