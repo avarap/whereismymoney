@@ -38,7 +38,7 @@ exports.insertCashFlow = async (req, res, next) => {
     data.picture = req.body.picture;
     data.owner = userData._id;
     await data.save();
-    res.json({ message: SuccesMessage });
+    res.json({ message: SuccesMessage, ...data });
     return;
   } catch (err) {
     if (err.code === 11000) {

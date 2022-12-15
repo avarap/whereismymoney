@@ -12,8 +12,7 @@ const defaultValues = [{
   description: "",
   category: "",
   totalAmount: 0,
-  // overall = [];
-  // overall.push({ percentage: 100, paid: "True", user: req.user._id });
+  overall: [],
   picture: "",
   owner: "",
 }];
@@ -44,14 +43,14 @@ function Cashflow() {
           <Typography component="h2" variant="h5" color="inherit" noWrap sx={{ flexGrow: 2 }}>
             Add a new expense
           </Typography>
-          <CashFlowForm  />
+          <CashFlowForm updateData={setData}/>
         </Paper>
       </Grid>
       {/* Recent Expenses */}
       <Grid item xs={12}>
-        <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+        {/* <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}> */}
         {data ? <MaterialTable {...{data}}/> : <></>}
-        </Paper>
+        {/* </Paper> */}
       </Grid>
     </>
   );

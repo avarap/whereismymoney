@@ -1,113 +1,116 @@
-import * as React from 'react';
-import MUIDataTables, {TableBody} from "mui-datatables"
-import { Paper} from '@mui/material';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import { IconButton} from '@mui/material';
+import * as React from "react";
+import MUIDataTables, { TableBody } from "mui-datatables";
+import { Paper } from "@mui/material";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import { IconButton } from "@mui/material";
+import { postData } from "../utils/useFetch";
 
+const deleteButton = (value, tableMeta, updateValue) => {
+  return <button onClick={() => console.log(tableMeta)}>Delete</button>;
+};
 
+const editButton = (value, tableMeta, updateValue) => {
+  return (
+    <IconButton onClick={() => console.log(value, tableMeta)}>
+      <ModeEditIcon />
+    </IconButton>
+  );
+};
 
 const columns = [
-    {
-      name: "Date",
-      options: {
-        filter: true,
-      }
+  {
+    label: "ID",
+    name: "_id",
+    options: {
+      filter: false,
+      display: false,
     },
-    {
-      label: "Description",
-      name: "Title",
-      options: {
-        filter: true,
-      }
+  },
+  {
+    label: "Date",
+    name: "valueDate",
+    options: {
+      filter: true,
     },
-    {
-      name: "Category",
-      options: {
-        filter: false,
-      }
+  },
+  {
+    label: "Description",
+    name: "description",
+    options: {
+      filter: true,
     },
-    {
-      name: "Amount",
-      options: {
-        filter: true,
-      }
+  },
+  {
+    label: "Category",
+    name: "category",
+    options: {
+      filter: true,
     },
-    {
-        name: "Delete",
-        options: {
-          filter: true,
-          sort: false,
-          empty: true,
-          customBodyRender: (value, tableMeta, updateValue) => {
-            return (
-              <button onClick={() => console.log(value, tableMeta) }>
-                Delete
-              </button>
-            );
-          }
-        }
-      },
-      {
-        name: "Edit",
-        options: {
-          filter: false,
-          sort: false,
-          empty: true,
-          customBodyRender: (value, tableMeta, updateValue) => {
-            return (
-              <IconButton onClick={() => console.log(value, tableMeta) }>
-                <ModeEditIcon />
-              </IconButton>
-            );
-          }
-        }
-      },
-  ];
+  },
+  {
+    label: "Amount",
+    name: "totalAmount",
+    options: {
+      filter: true,
+    },
+  },
+  {
+    label: "Delete",
+    name: "Delete",
+    options: {
+      filter: false,
+      sort: false,
+      empty: true,
+      print: false,
+      customBodyRender: deleteButton,
+    },
+  },
+  {
+    label: "Edit",
+    name: "Edit",
+    options: {
+      filter: false,
+      sort: false,
+      empty: true,
+      print: false,
+      customBodyRender: editButton,
+    },
+  },
+];
 
-  const data = [
-    ["Joe James", "Test Corp", "Yonkers", "NY"],
-    ["John Walsh", "Test Corp", "Hartford", "CT"],
-    ["Bob Herm", "Test Corp", "Tampa", "FL"],
-    ["James Houston", "Test Corp", "Dallas", "TX"],
-   ];
-const options = {
-    filterType: 'checkbox',
-  };
+const options = { filterType: "checkbox" };
 
-  const CustomPaper = () => {
-    return (
-        <Paper
-        sx={{boxShadow: "none !important"}}
-        />
-    );
+const CustomPaper = () => {
+  return <Paper sx={{ boxShadow: "none !important" }} />;
 };
 
 const CustomMuiPaper = (props) => {
-    return <TableBody {...props} ItemComponent={CustomPaper} />;
+  return (
+    <TableBody {...props} ItemComponent={CustomPaper} VVV/>
+  );
 };
 
-function MaterialTable() {
+function MaterialTable({ data }) {
+  // const [rows, setRows] = useState();
 
-    // const [rows, setRows] = useState();
-
-    // const deleteRow = (number) => {
-    //   let copy = [...rows]
-    //   copy.filter((item, index) => number !== index
-    //   )
-    //   setRows()
-    // }
+  // const deleteRow = (number) => {
+  //   let copy = [...rows]
+  //   copy.filter((item, index) => number !== index
+  //   )
+  //   setRows()
+  // }
 
   return (
-    <MUIDataTables 
-    title={"Expenses"}
-    data={data}
-    columns={columns}
-    options={options}
-    components={{
+    <MUIDataTables
+      title={"Expenses"}
+      data={data}
+      columns={columns}
+      options={options}
+      components={{
         TableBody: CustomMuiPaper,
       }}
     />
-  )
+  );
 }
 
 export default MaterialTable;
