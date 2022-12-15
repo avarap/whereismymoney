@@ -10,9 +10,6 @@ import DashboardLayout from "./pages/DashboardLayout";
 import { Routes, Route} from "react-router-dom";
 import { UserContext } from "./contexts/UserContextProvider"
 import {  useContext } from "react";
-// import axios from "axios";
-
-import "./App.css";
 
 
 function App() {
@@ -21,50 +18,22 @@ function App() {
 
 	return (
 		<div className="container">
-			
 			<Routes>
-				<Route
-					exact
-					path="/"
-					element={<Home />}
-				/>
+				<Route exact path="/" element={<Home />} />
 				{/* <Route
 					exact
 					path="/profile"
 					element={user ? <Profile {...{ user, setUser }} /> : <Navigate to="/" />}
 				/> */}
 				<Route path="/" element={<DashboardLayout />}>
-					<Route
-						exact
-						path="/profile"
-						element={<Profile  /> }
-					/>
-					<Route
-					exact
-					path="/dashboard"
-					element={<Dashboard /> }
-					/>
-					<Route
-					exact
-					path="/cashflow"
-					element={<Cashflow /> }
-					/>
-					<Route
-					exact
-					path="/friends"
-					element={<Friends /> }
-					/>
+					<Route exact path="/profile" element={<Profile  /> } />
+					<Route exact path="/dashboard" element={<Dashboard /> } />
+					<Route exact path="/cashflow" element={<Cashflow /> } />
+					<Route exact path="/friends" element={<Friends /> } />
 				</Route>
 				
-				<Route
-					exact
-					path="/login"
-					element={<Login2 />}
-				/>
-				<Route
-					path="/signup"
-					element={<SignUp />}
-				/>
+				<Route exact path="/login" element={<Login2 />} />
+				<Route path="/signup" element={<SignUp />} />
 			</Routes>
 		</div>
 	);

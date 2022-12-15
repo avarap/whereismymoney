@@ -6,7 +6,6 @@ const UserContext = createContext();
 function UserContextProvider({ children }) {
     const [userObject, setUserObject] = useState(null);
 
-
     const getUser = async () => {
         try {
             const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
