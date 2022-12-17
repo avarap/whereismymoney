@@ -1,8 +1,8 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Link, Rating } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Colors } from "./Theme";
+import { Colors } from "../../../styles/Theme";
 
-export const BannerContainer = styled(Box)(({ matches, theme }) => ({
+export const BannerContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   width: "100%",
@@ -14,18 +14,15 @@ export const BannerContainer = styled(Box)(({ matches, theme }) => ({
     alignItems: "center",
     padding: "20px 0",
   },
-  // backgroundImage: `url(/images/banner/banner.png)`,
-  // backgroundRepeat: "no-repeat",
-  // backgroundPosition: "center",
 }));
 
-export const BannerRow = styled(Box)(({ matches, theme }) => ({
+export const BannerRow = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   width: "1200px",
   height: "100%",
   padding: '0 12px',
-  alignItems: "center",
+
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
     alignItems: "center",
@@ -33,15 +30,29 @@ export const BannerRow = styled(Box)(({ matches, theme }) => ({
   },
 }));
 
-export const Stars = styled(Box)(({ matches, theme }) => ({
+export const Stars = styled(Box)(() => ({
   display: "flex",
   flexDirection: "row",
-  marginBottom: "15px",
-  fontWeight: "500",
+  marginBottom: "30px",
   fontSize: "1.25rem",
   lineHeight: "1.6",
-  letterSpacing: "0.0075em",
 }));
+
+export const UserRating = styled(Rating)(() => ({
+  display: "flex",
+  flexDirection: "row",
+  fontWeight: "600",
+  fontSize: "1.80rem",
+  lineHeight: "1.6",
+  letterSpacing: "0.0015em",
+}));
+
+export const ReviewsLink = styled(Link)(() => ({
+  fontWeight: "600",
+  color: "#5624d0",
+  textDecorationColor: "#5624d0",
+}));
+
 
 export const BannerContent = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -72,7 +83,7 @@ export const BannerImage = styled("img")(({ theme }) => ({
 
 export const BannerTitle = styled(Typography)(({ theme }) => ({
   lineHeight: 1.1,
-  fontSize: "52px",
+  fontSize: "56px",
   marginBottom: "20px",
   [theme.breakpoints.down('md')]: {
     fontSize: '42px',
@@ -91,26 +102,4 @@ export const BannerDescription = styled(Typography)(({ theme }) => ({
     marginBottom: "1.5em",
     textAlign: "center"
   },
-}));
-
-export const BannerButton = styled(Typography)(({ theme }) => ({
-  width: "270px",
-  height: "55px",
-  borderRadius: "5px",
-  border: "none",
-  outline: "none",
-  backgroundColor: Colors.black,
-  boxShadow: "1px 2px 2px #2c444e8c",
-  fontSize: "16px",
-  fontWeight: "500",
-  margin: "0 0 20px 0",
-  color: Colors.white,
-  cursor: "pointer",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  position: "relative",
-  [theme.breakpoints.down('sm')]: {
-    fontSize: '14px',
-  }
 }));

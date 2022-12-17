@@ -13,7 +13,7 @@ import {
   TestimonialContainer,
   TestimonialGridContainer,
   TestimonialItem
-} from "../../styles/TestimonialStyles";
+} from "./TestimonialStyles";
 
 const reviews = [
   {

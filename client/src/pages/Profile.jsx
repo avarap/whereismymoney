@@ -5,20 +5,21 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import axios from "axios";
-import Orders from '../components/Orders';
+// import Orders from '../components/Orders';
 import Avatar from '@mui/material/Avatar';
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
 
 	const { userObject } = useContext(UserContext);
-
+	const navigate = useNavigate();
 
 	function logout() {
 		axios({ method: "POST", url: `${process.env.REACT_APP_API_URL}/auth/logout`, withCredentials: true })
 			.then((response) => {
 				console.log("response status", response)
 				if (response.status === 200) {
-					navigate("/login");
+					navigate("/");
 					return null;
 				}
 			})
@@ -65,7 +66,7 @@ function Profile() {
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders />
+                  {/* <Orders /> */}
                 </Paper>
               </Grid>
 		</>
