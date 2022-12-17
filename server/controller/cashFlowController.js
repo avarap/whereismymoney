@@ -21,6 +21,23 @@ exports.getAllCashFlow = async (req, res, next) => {
   }
 };
 
+exports.getOverview = async (req, res, next) => {
+  try {
+    const userData = await User.findOne({ googleId: req.user.googleId });
+    if (!userData.googleId) {
+      res.json({ message: NoDataFoundMessage });
+      return;
+    }
+    //const data = await Cashflow.find({ owner: userData._id });
+    //const aggCursor = await Cashflow.aggregate([{ $group: { _id: "$category", total: { $sum: "$totalAmount" } } }]);
+    const data = await Cashflow.aggregate([{ $match: { owner: userData._id } }, { $group: { _id: { year: { $year: "$valueDate" }, month: { $month: "$valueDate" }, category: "$category" }, totalCategory: { $sum: "$totalAmount" } } }]);
+    res.json(data);
+    return;
+  } catch (err) {
+    res.json({ message: err.message });
+  }
+};
+
 exports.insertCashFlow = async (req, res, next) => {
   try {
     const userData = await User.findOne({ googleId: req.user.googleId });

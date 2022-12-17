@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Chart from "../components/Chart";
 import Deposits from "../components/Deposits";
 import Orders from "../components/Orders";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import { getData } from "../utils/useFetch";
 
 function Dashboard() {
+  const [data, setData] = useState([]);
+
+  const getUserData = async () => {
+    try {
+      const url = `${process.env.REACT_APP_API_URL}/cashflow/overview`;
+      const allData = await getData(url);
+      console.log(allData.data);
+      setData(allData.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
   return (
     <>
       {/* Chart */}
@@ -23,7 +40,7 @@ function Dashboard() {
       {/* Recent Orders */}
       <Grid item xs={12}>
         <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-          <Orders {...{ data }} />
+          {/* <Orders {...{ data }} /> */}
         </Paper>
       </Grid>
     </>
