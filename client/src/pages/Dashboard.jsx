@@ -23,7 +23,7 @@ function Dashboard() {
       {/* Recent Orders */}
       <Grid item xs={12}>
         <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-          <Orders {...{ data }} />
+          {/* <Orders {...{ data }} /> */}
         </Paper>
       </Grid>
     </>
