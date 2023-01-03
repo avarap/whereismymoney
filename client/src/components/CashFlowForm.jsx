@@ -8,7 +8,6 @@ import FormControl from "@mui/material/FormControl";
 // import Radio from "@mui/material/Radio";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-// import Slider from "@mui/material/Slider";
 import Button from "@mui/material/Button";
 import InputLabel from "@mui/material/InputLabel";
 import { postData } from "../utils/useFetch";
@@ -22,7 +21,6 @@ const defaultValues = {
   category: "",
   totalAmount: 0,
   overall: [],
-  // overall.push({ percentage: 100, paid: "True", user: req.user._id });
   picture: "",
   owner: "",
 };
@@ -31,6 +29,10 @@ const apiRoute = "/cashflow/create";
 
 const CashFlowForm = ({ updateData }) => {
   const [formValues, setFormValues] = useState(defaultValues);
+
+  const current = new Date();
+  const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+  setFormValues({ ...formValues, ["valueDate"]: date });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -71,7 +73,7 @@ const CashFlowForm = ({ updateData }) => {
             name="valueDate"
             //label="Date"
             type="date"
-            inputFormat="DD/MM/YYYY"
+            // inputFormat="DD/MM/YYYY"
             value={formValues.valueDate}
             onChange={handleInputChange}
             sx={{ m: 1 }}
@@ -97,40 +99,14 @@ const CashFlowForm = ({ updateData }) => {
           />
           <FormControl sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="demo-simple-select-label">Categories</InputLabel>
-            <Select
-              name="category"
-              label="Date"
-              value={formValues.category}
-              onChange={handleInputChange}>
-              <MenuItem
-                key="bank"
-                value="bank">
-                Bank
-              </MenuItem>
-              <MenuItem
-                key="shops"
-                value="shops">
-                Shops
-              </MenuItem>
-              <MenuItem
-                key="restaurant "
-                value="restaurant">
-                Restaurant
-              </MenuItem>
-              <MenuItem
-                key="others "
-                value="others">
-                Others
-              </MenuItem>
+            <Select name="category" label="Date" value={formValues.category} onChange={handleInputChange}>
+              <MenuItem key="bank" value="bank">Bank</MenuItem>
+              <MenuItem key="shops" value="shops">Shops</MenuItem>
+              <MenuItem key="restaurant " value="restaurant">Restaurant</MenuItem>
+              <MenuItem key="others " value="others">Others</MenuItem>
             </Select>
           </FormControl>
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            sx={{ m: 1 }}>
-            Submit
-          </Button>
+          <Button variant="contained" color="primary" type="submit" sx={{ m: 1 }}>Submit</Button>
         </Grid>
         {/* <Grid item xs={12} md={8} lg={9}>
                   <Button variant="contained" color="primary" type="submit">Submit</Button>
@@ -138,7 +114,6 @@ const CashFlowForm = ({ updateData }) => {
         {/* </Paper> */}
       </Grid>
     </form>
-    // </MuiPickersUtilsProvider>
   );
 };
 
