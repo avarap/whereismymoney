@@ -1,10 +1,10 @@
-import HeroSection from "../components/herosection/HeroSection";
-import NavbarDesktop from "../components/herosection/NavbarDesktop";
-import SingleFeatureRight from "../components/herosection/SingleFeatureRight";
-import SingleFeatureLeft from "../components/herosection/SingleFeatureLeft";
-import CustomerTestimonials from "../components/herosection/CustomerTestimonials";
-import Footer from "../components/herosection/Footer";
-import CTA from "../components/herosection/CTA";
+import HeroSection from "../components/homepagecomponents/herosection/HeroSection";
+import NavbarDesktop from "../components/homepagecomponents/navbar/Navbar";
+import SingleFeatureRight from "../components/homepagecomponents/singlefeatures/SingleFeatureRight";
+import SingleFeatureLeft from "../components/homepagecomponents/singlefeatures/SingleFeatureLeft";
+import CustomerTestimonials from "../components/homepagecomponents/testimonials/CustomerTestimonials";
+import Footer from "../components/homepagecomponents/footer/Footer";
+import CTA from "../components/homepagecomponents/cta/CTA";
 
 function Home() {
 	

@@ -1,14 +1,14 @@
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/system";
-import { Colors } from "./Theme";
+import { Colors } from "../../../styles/Theme";
 
 export const AppbarOuterContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   background: Colors.body_bg,
   padding: '0 12px',
-  
+
   [theme.breakpoints.down("md")]: {
     display: 'flex',
     flexDirection: "column",
@@ -41,9 +41,6 @@ export const Logo = styled("img")(({ src, theme }) => ({
   [theme.breakpoints.down("md")]: {
     width: "300px",
   },
-  // [theme.breakpoints.down("sm")]: {
-  //   width: "120px",
-  // },
 }));
 
 export const LoginButton = styled(Button)(({ theme }) => ({
