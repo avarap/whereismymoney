@@ -28,7 +28,6 @@ function Cashflow() {
     try {
       const url = `${process.env.REACT_APP_API_URL}/cashflow`;
       const allData = await getData(url);
-      //console.log('allData',allData);
       setData(allData.data);
     } catch (err) {
       console.log(err);
