@@ -19,6 +19,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems, secondaryListItems, tertiaryListItems } from '../../components/listItems';
 import { Colors } from "../../styles/Theme";
 import Navbar from "../../components/Navbar";
+import BottomNavigation from "../../components/bottomnavigation/MobileBottomNavigation";
 
 
 // import { NoEncryption } from '@mui/icons-material';
@@ -53,7 +54,7 @@ const AppBar = styled(MuiAppBar, {
   backgroundColor: Colors.white,
   color: Colors.black,
   [theme.breakpoints.down('sm')]: {
-    display: "none",
+    width: "100%",
   },
 }));
 
@@ -86,7 +87,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
       }),
     },
     [theme.breakpoints.down('sm')]: {
-      display: "none",
+      width: 0,
+      display:'none',
     },
   }),
 );
@@ -189,6 +191,7 @@ function DashboardContent() {
             </Grid>
             <Copyright sx={{ pt: 4 }} />
           </Container>
+          <BottomNavigation />
         </Box> 
       </Box>
     </ThemeProvider>
