@@ -11,7 +11,8 @@ import MenuItem from "@mui/material/MenuItem";
 // import Slider from "@mui/material/Slider";
 import Button from "@mui/material/Button";
 import InputLabel from "@mui/material/InputLabel";
-import { postData } from "../utils/useFetch";
+import { postData } from "../../utils/useFetch";
+import "./CashFlowFormStyles.css";
 
 
 
@@ -60,18 +61,13 @@ const CashFlowForm = ({ updateData }) => {
         justify="center"
         direction="column">
         {/* <Paper sx={{ p: 2, display: "flex", flexDirection: "row", height: 540 }}> */}
-        <Grid
-          item
-          xs={12}
-          md={8}
-          lg={9}
-          sx={{ display: "flex" }}>
+        <Grid item xs={12} md={8} lg={9} className="form-container">
           <TextField
             id="date-input"
             name="valueDate"
             //label="Date"
             type="date"
-            inputFormat="DD/MM/YYYY"
+            // inputFormat="DD/MM/YYYY"
             value={formValues.valueDate}
             onChange={handleInputChange}
             sx={{ m: 1 }}

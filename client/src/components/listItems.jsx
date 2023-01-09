@@ -11,27 +11,34 @@ import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import { Link } from "react-router-dom";
 
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton component="a" href="/dashboard">
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItemButton>
-    <ListItemButton href="/cashflow">
-      <ListItemIcon >
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Cashflow" />
-    </ListItemButton>
-    <ListItemButton href="/friends">
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Friends" />
-    </ListItemButton>
+    <Link to="/dashboard">
+      <ListItemButton component="a">
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Dashboard" />
+      </ListItemButton>
+    </Link>
+    <Link to="/cashflow">
+      <ListItemButton>
+        <ListItemIcon >
+          <ShoppingCartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Cashflow" />
+      </ListItemButton>
+    </Link>
+    <Link to="/friends">
+      <ListItemButton>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Friends" />
+      </ListItemButton>
+    </Link>
     <ListItemButton>
       <ListItemIcon>
         <BarChartIcon />
@@ -78,12 +85,14 @@ export const tertiaryListItems = (
     <ListSubheader component="div" inset>
       Settings
     </ListSubheader>
-    <ListItemButton href="/profile">
+    <Link to="/profile">
+    <ListItemButton>
       <ListItemIcon>
         <AccountBoxIcon />
       </ListItemIcon>
       <ListItemText primary="Profile" />
     </ListItemButton>
+    </Link>
     <ListItemButton>
       <ListItemIcon>
         <LogoutIcon />

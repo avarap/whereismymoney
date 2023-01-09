@@ -32,42 +32,44 @@ export default function Navbar() {
     setAnchorEl(null);
   };
 
-  
 
-	const navigate = useNavigate();
 
-	function logout() {
-		axios({ method: "POST", url: `${process.env.REACT_APP_API_URL}/auth/logout`, withCredentials: true })
-			.then((response) => {
-				console.log("response status", response)
-				if (response.status === 200) {
-					navigate("/login");
-					return null;
-				}
-			})
+  const navigate = useNavigate();
 
-	}
+  function logout() {
+    axios({ method: "POST", url: `${process.env.REACT_APP_API_URL}/auth/logout`, withCredentials: true })
+      .then((response) => {
+        console.log("response status", response)
+        if (response.status === 200) {
+          navigate("/");
+          return null;
+        }
+      })
 
-// const logout = () => {
-//   window.open("http://localhost:5005/auth/logout", "_self");
-// };
+  }
+
+  // const logout = () => {
+  //   window.open("http://localhost:5005/auth/logout", "_self");
+  // };
 
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Typography sx={{ minWidth: 100 }}><Link onClick={logout}>Logout</Link></Typography>
+        {userObject ? (<Typography>Hola, {userObject.displayName} </Typography>)
+          : (<Typography sx={{ width: 32, height: 32 }}>Si</Typography>)}
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
             size="small"
-            sx={{ ml: 2 }}
+            sx={{ ml: 1 }}
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
             {/* <Typography sx={{ minWidth: 100 }}>Welcome, {userObject.displayName}</Typography> */}
             {userObject ? (<Avatar sx={{ width: 32, height: 32 }} alt={userObject.displayName} src={`${userObject.picture}`}>{userObject.displayName}</Avatar>)
-                    : (<Avatar sx={{ width: 32, height: 32 }}>M</Avatar>) }
+              : (<Avatar sx={{ width: 32, height: 32 }}>M</Avatar>)}
           </IconButton>
         </Tooltip>
       </Box>

@@ -2,24 +2,22 @@ import './App.css';
 import Home from "./pages/Home"
 import SignUp from "./pages/SignUp";
 import Login2 from "./pages/Login2";
-import Profile from "./pages/Profile";
+import Profile from "./pages/profile/Profile";
 import Dashboard from "./pages/Dashboard";
-import Cashflow from "./pages/Cashflow";
+import Cashflow from "./pages/cashflow/Cashflow";
 import Friends from './pages/Friends';
-import DashboardLayout from "./pages/DashboardLayout";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import DashboardLayout from "./pages/dashboardlayout/DashboardLayout";
+import { Routes, Route, Navigate} from "react-router-dom";
 import { UserContext } from "./contexts/UserContextProvider"
 import { useContext } from "react";
+import DynamicTitle from './utils/DynamicTitle';
 
 
 
 function App() {
 	const { userObject } = useContext(UserContext);
 	console.log(userObject)
-
-	const navigate = useNavigate();
-
-
+	DynamicTitle("Where is my money");
 
 	return (
 		<div className="container">

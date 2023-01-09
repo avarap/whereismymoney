@@ -18,10 +18,11 @@ export const Colors = {
   ///////////////
   // Background
   ///////////////
-  body_bg: "#FFFDFA",
+  body_bg: "#cff9ea",
   white: "#fff",
   black: "#000",
   light_pink: "#FFF3FF",
+  white_pink: "#FFFDFA"
   
 };
 
