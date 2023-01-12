@@ -12,6 +12,7 @@ const app = express();
 
 const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || "http://localhost:3000";
 
+console.log(MONGO_URI);
 //DBStore
 const store = new MongoDBStore({ uri: MONGO_URI, collection: "sessions", });
 
