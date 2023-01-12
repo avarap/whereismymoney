@@ -11,6 +11,15 @@
     height: 150px !important;
 }
 
+.logout-btn {
+    background-color: black !important;
+}
+
+.logout-btn:hover {
+    background-color: #CFF9EA !important;
+    color:black;
+}
+
 
 @media (max-width: 900px) {
     .profile-container {

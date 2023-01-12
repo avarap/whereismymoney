@@ -19,13 +19,13 @@ function MobileBottomNavigation() {
   return (
     <BottomNavigation className='navigation-style' elevation={3} value={value} onChange={handleChange}>
       <Link to="/dashboard">
-        <BottomNavigationAction label="Dashboard" value="dashboard" icon={<DashboardIcon />} />
+        <BottomNavigationAction label="Dashboard" value="dashboard" icon={<DashboardIcon style={{color:"black"}} />} />
       </Link>
       <Link to="/cashflow">
-        <BottomNavigationAction label="Cashflow" value="cashflow" icon={<ShoppingCartIcon />} />
+        <BottomNavigationAction label="Cashflow" value="cashflow" icon={<ShoppingCartIcon style={{color:"black"}} />} />
       </Link>
       <Link to="/cashflow">
-        <BottomNavigationAction label="Friends" value="friends" icon={<PeopleIcon />} />
+        <BottomNavigationAction label="Friends" value="friends" icon={<PeopleIcon style={{color:"black"}} />} />
       </Link>
     </BottomNavigation>
   );

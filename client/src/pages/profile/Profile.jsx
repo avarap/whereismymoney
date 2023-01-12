@@ -46,7 +46,7 @@ function Profile() {
 					<>
 					<h1>Welcome back {userObject.displayName}</h1>
 					<p>You are logged in with: {userObject.email}</p>
-					<Button variant="contained" onClick={logout}>Log Out</Button>
+					<Button variant="contained" onClick={logout} className="logout-btn">Log Out</Button>
 					</>
 				) : (
 					<h1>Welcome To MY Website</h1>

@@ -20,7 +20,7 @@ export const mainListItems = (
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
-        <ListItemText primary="Dashboard" />
+        <ListItemText primary="Dashboard" sx={{color:"black"}} />
       </ListItemButton>
     </Link>
     <Link to="/cashflow">
@@ -28,7 +28,7 @@ export const mainListItems = (
         <ListItemIcon >
           <ShoppingCartIcon />
         </ListItemIcon>
-        <ListItemText primary="Cashflow" />
+        <ListItemText primary="Cashflow" sx={{color:"black"}} />
       </ListItemButton>
     </Link>
     <Link to="/friends">
@@ -36,7 +36,7 @@ export const mainListItems = (
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
-        <ListItemText primary="Friends" />
+        <ListItemText primary="Friends" sx={{color:"black"}} />
       </ListItemButton>
     </Link>
     <ListItemButton>
@@ -85,12 +85,12 @@ export const tertiaryListItems = (
     <ListSubheader component="div" inset>
       Settings
     </ListSubheader>
-    <Link to="/profile">
+    <Link to="/profile" >
     <ListItemButton>
       <ListItemIcon>
         <AccountBoxIcon />
       </ListItemIcon>
-      <ListItemText primary="Profile" />
+      <ListItemText primary="Profile" sx={{color:"black"}} />
     </ListItemButton>
     </Link>
     <ListItemButton>

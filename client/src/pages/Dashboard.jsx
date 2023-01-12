@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Chart from "../components/Chart";
-import Deposits from "../components/Deposits";
+import Deposits from "../components/Balance";
 // import Orders from "../components/Orders";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { getData } from "../utils/useFetch";
+import { Colors } from "./../styles/Theme";
 
 function Dashboard() {
   const [data, setData] = useState([]);
@@ -31,9 +32,9 @@ function Dashboard() {
           <Chart />
         </Paper>
       </Grid>
-      {/* Recent Deposits */}
+      {/* Balance */}
       <Grid item xs={12} md={4} lg={3}>
-        <Paper sx={{ p: 2, display: "flex", flexDirection: "column", height: 240 }}>
+        <Paper sx={{ p: 2, display: "flex", flexDirection: "column", height: 240, backgroundColor: Colors.body_bg }}>
           <Deposits />
         </Paper>
       </Grid>

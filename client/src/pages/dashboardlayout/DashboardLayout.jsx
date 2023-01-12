@@ -151,14 +151,7 @@ function DashboardContent() {
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open} className="leftbar" >
-          <Toolbar
-            sx={{
-              // display: 'flex',
-              // alignItems: 'center',
-              // justifyContent: 'flex-end',
-              // px: [1],
-            }}
-          ><img src="./images/wmm4.png" alt="" width="150" />
+          <Toolbar><img src="./images/wmm4.png" alt="" width="150" />
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
             </IconButton>
@@ -177,8 +170,6 @@ function DashboardContent() {
           sx={{
             backgroundColor: (theme) =>
               Colors.white_pink,
-                // ? theme.palette.grey[100]
-                // : theme.palette.grey[900],
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',

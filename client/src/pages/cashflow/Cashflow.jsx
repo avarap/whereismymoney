@@ -7,7 +7,7 @@ import CashFlowForm from "../../components/cashflowform/CashFlowForm";
 import { getData } from "../../utils/useFetch";
 import MaterialTable from "../../components/MaterialTable";
 import "./CashflowStyles.css";
-import DynamicTitle from '../../utils/DynamicTitle';
+// import DynamicTitle from '../../utils/DynamicTitle';
 
 const defaultValues = [{
   valueDate: "",
@@ -22,7 +22,7 @@ const defaultValues = [{
 function Cashflow() {
   const [data, setData] = useState([]);
   
-  DynamicTitle("Cashflow");
+  // DynamicTitle("Cashflow");
 
   const getUserData = async () => {
     try {

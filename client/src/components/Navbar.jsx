@@ -55,8 +55,7 @@ export default function Navbar() {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        <Typography sx={{ minWidth: 100 }}><Link onClick={logout}>Logout</Link></Typography>
-        {userObject ? (<Typography>Hola, {userObject.displayName} </Typography>)
+        {userObject.picture ? (<Typography>Hola, {userObject.displayName} </Typography>)
           : (<Typography sx={{ width: 32, height: 32 }}>Si</Typography>)}
         <Tooltip title="Account settings">
           <IconButton
@@ -68,7 +67,7 @@ export default function Navbar() {
             aria-expanded={open ? 'true' : undefined}
           >
             {/* <Typography sx={{ minWidth: 100 }}>Welcome, {userObject.displayName}</Typography> */}
-            {userObject ? (<Avatar sx={{ width: 32, height: 32 }} alt={userObject.displayName} src={`${userObject.picture}`}>{userObject.displayName}</Avatar>)
+            {userObject.picture ? (<Avatar sx={{ width: 32, height: 32 }} alt={userObject.displayName} src={`${userObject.picture}`}>{userObject.displayName}</Avatar>)
               : (<Avatar sx={{ width: 32, height: 32 }}>M</Avatar>)}
           </IconButton>
         </Tooltip>
@@ -125,7 +124,7 @@ export default function Navbar() {
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          <Typography sx={{ minWidth: 100 }}><Link onClick={logout}>Logout</Link></Typography>
+          <Typography sx={{ minWidth: 100 }} onClick={logout}>Logout</Typography>
         </MenuItem>
       </Menu>
     </React.Fragment>

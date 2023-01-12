@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
 import Title from './Title';
-// import {Colors } from "../styles/Theme"
 
 // Generate Sales Data
 function createData(time, amount) {
@@ -51,7 +50,7 @@ export default function Chart() {
               position="left"
               style={{
                 textAnchor: 'middle',
-                fill: theme.palette.text.primary,
+                fill: theme.palette.text.secondary,
                 ...theme.typography.body1,
               }}
             >
@@ -59,11 +58,11 @@ export default function Chart() {
             </Label>
           </YAxis>
           <Line
-            isAnimationActive={false}
+            isAnimationActive={true}
             type="monotone"
             dataKey="amount"
-            stroke={theme.palette.primary.main}
-            dot={false}
+            stroke="#82ca9d"
+            dot={true}
           />
         </LineChart>
       </ResponsiveContainer>
