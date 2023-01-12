@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Chart from "../components/Chart";
-import Deposits from "../components/Deposits";
-import Orders from "../components/Orders";
+import Deposits from "../components/Balance";
+// import Orders from "../components/Orders";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { getData } from "../utils/useFetch";
+import { Colors } from "./../styles/Theme";
 
 function Dashboard() {
   
@@ -30,27 +31,15 @@ function Dashboard() {
   return (
     <>
       {/* Chart */}
-      <Grid
-        item
-        xs={12}
-        md={8}
-        lg={9}>
+      <Grid item xs={12} md={8} lg={9}>
         <Paper sx={{ p: 2, display: "flex", flexDirection: "column", height: 240 }}>
           <Chart {...{ data }} />
         </Paper>
       </Grid>
       {/* Recent Deposits */}
-      <Grid
-        item
-        xs={12}
-        md={4}
-        lg={3}>
-        <Paper sx={{ p: 2, display: "flex", flexDirection: "column", height: 240 }}>
-          <Deposits
-            {...{ data }}
-            {...{ year }}
-            {...{ month }}
-          />
+      <Grid item xs={12} md={4} lg={3}>
+        <Paper sx={{ p: 2, display: "flex", flexDirection: "column", height: 240, backgroundColor: Colors.body_bg }}>
+          <Deposits {...{ data }} {...{ year }} {...{ month }} />
         </Paper>
       </Grid>
       {/* Recent Orders */}

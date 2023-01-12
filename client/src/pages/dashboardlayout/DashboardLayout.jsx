@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Outlet} from "react-router-dom";
+import "./DashboardStyles.css";
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -15,9 +16,13 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { mainListItems, secondaryListItems, tertiaryListItems } from '../components/listItems';
+import { mainListItems, secondaryListItems, tertiaryListItems } from '../../components/listItems';
+import { Colors } from "../../styles/Theme";
+import Navbar from "../../components/Navbar";
+import BottomNavigation from "../../components/bottomnavigation/MobileBottomNavigation";
 
-import Navbar from "../components/Navbar"
+
+// import { NoEncryption } from '@mui/icons-material';
 
 
 // const Item = styled(Paper)(({ theme }) => ({
@@ -46,6 +51,11 @@ const AppBar = styled(MuiAppBar, {
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
+  backgroundColor: Colors.white,
+  color: Colors.black,
+  [theme.breakpoints.down('sm')]: {
+    width: "100%",
+  },
 }));
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -53,10 +63,15 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     '& .MuiDrawer-paper': {
       position: 'relative',
       whiteSpace: 'nowrap',
+      backgroundColor: Colors.white,
+      // color: "white",
       width: drawerWidth,
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
+        // [theme.breakpoints.down('md')]: {
+        //   display: "none",
+        // },
       }),
       boxSizing: 'border-box',
       ...(!open && {
@@ -71,6 +86,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
         },
       }),
     },
+    [theme.breakpoints.down('sm')]: {
+      width: 0,
+      display:'none',
+    },
   }),
 );
 
@@ -78,8 +97,8 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
     {'Copyright © '}
-    <Link color="inherit" href="https://mui.com/">
-      Your Website
+    <Link color="inherit" href="http://localhost:3000/">
+      Where Is My Money
     </Link>{' '}
     {new Date().getFullYear()}
     {'.'}
@@ -91,6 +110,7 @@ const mdTheme = createTheme();
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -99,7 +119,7 @@ function DashboardContent() {
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
+        <AppBar position="absolute" open={open} className="appbar">
           <Toolbar
             sx={{
               pr: '24px', // keep right padding when drawer closed
@@ -130,15 +150,8 @@ function DashboardContent() {
 
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={open}>
-          <Toolbar
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-end',
-              px: [1],
-            }}
-          ><img src="./images/TNW_logo.svg.png" alt="" width="70" />
+        <Drawer variant="permanent" open={open} className="leftbar" >
+          <Toolbar><img src="./images/wmm4.png" alt="" width="150" />
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
             </IconButton>
@@ -156,9 +169,7 @@ function DashboardContent() {
           component="main"
           sx={{
             backgroundColor: (theme) =>
-              theme.palette.mode === 'light'
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
+              Colors.white_pink,
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',
@@ -171,6 +182,7 @@ function DashboardContent() {
             </Grid>
             <Copyright sx={{ pt: 4 }} />
           </Container>
+          <BottomNavigation />
         </Box> 
       </Box>
     </ThemeProvider>

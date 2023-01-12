@@ -12,7 +12,7 @@ function SingleFeatureRight() {
   return (
     <BannerContainer >
       <BannerRow>
-        <BannerImage src="./images/pic3.png" />
+        <BannerImage src="./images/pic6.png" />
         <BannerContent>
           <BannerTitle variant="h2">
             Keep your cashflow crystal clear

@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import CashFlowForm from "../components/CashFlowForm";
-import { getData } from "../utils/useFetch";
-import MaterialTable from "../components/MaterialTable";
+import CashFlowForm from "../../components/cashflowform/CashFlowForm";
+import { getData } from "../../utils/useFetch";
+import MaterialTable from "../../components/MaterialTable";
+import "./CashflowStyles.css";
+// import DynamicTitle from '../../utils/DynamicTitle';
 
 const defaultValues = {
   _id: "",
@@ -19,6 +21,8 @@ const defaultValues = {
 
 function Cashflow() {
   const [data, setData] = useState([]);
+  
+  // DynamicTitle("Cashflow");
   const currentDate = new Date().toISOString().substring(0, 10);
   defaultValues["valueDate"] = currentDate;
 
@@ -40,7 +44,7 @@ function Cashflow() {
   return (
     <>
       <Grid item xs={12}>
-        <Paper sx={{ p: 2, display: "flex", flexDirection: "column", justifyContent: "center", height: 180 }}>
+        <Paper className="form-wrapper">
           <Typography component="h2" variant="h5" color="inherit" noWrap sx={{ flexGrow: 2 }}>
             Add a new expense
           </Typography>

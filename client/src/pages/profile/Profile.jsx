@@ -1,18 +1,17 @@
 import React from 'react'
 import { useContext, navigate } from 'react';
-import { UserContext } from '../contexts/UserContextProvider';
+import { UserContext } from '../../contexts/UserContextProvider';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import axios from "axios";
 // import Orders from '../components/Orders';
 import Avatar from '@mui/material/Avatar';
-import { useNavigate } from 'react-router-dom';
+import "./ProfileStyles.css";
 
 function Profile() {
 
 	const { userObject } = useContext(UserContext);
-	const navigate = useNavigate();
 
 	function logout() {
 		axios({ method: "POST", url: `${process.env.REACT_APP_API_URL}/auth/logout`, withCredentials: true })
@@ -30,21 +29,14 @@ function Profile() {
 		<>
               {/* Profile information */}
               <Grid item xs={12}>
-                <Paper
-                  sx={{
-                    p: 8,
-                    display: 'flex',
-                    flexDirection: 'row',
-                    height: 350,
-                  }}
-                >
-                  <Grid item>
+                <Paper className='profile-container'>
+                  <Grid item style={{margin: "0 20px"}}>
 		{	userObject ? (
 				<>
-					<Avatar sx={{ width: 150, height: 150 }} src={`${userObject.picture}`}></Avatar>
+					<Avatar className='profile-picture' src={`${userObject.picture}`}></Avatar>
 				</>
 				) : (
-					<Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+					<Avatar className='profile-picture'>M</Avatar>
 				) 
 			}
         </Grid>
@@ -54,7 +46,7 @@ function Profile() {
 					<>
 					<h1>Welcome back {userObject.displayName}</h1>
 					<p>You are logged in with: {userObject.email}</p>
-					<Button variant="contained" onClick={logout}>Log Out</Button>
+					<Button variant="contained" onClick={logout} className="logout-btn">Log Out</Button>
 					</>
 				) : (
 					<h1>Welcome To MY Website</h1>

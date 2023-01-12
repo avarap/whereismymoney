@@ -32,7 +32,7 @@ export default function Deposits({data, year, month}) {
       </Typography>
       <div>
         <Link
-          color="primary"
+          color="text.secondary"
           href="#"
           onClick={preventDefault}>
           View balance

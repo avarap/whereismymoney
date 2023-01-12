@@ -20,7 +20,7 @@ function SingleFeatureRight() {
             Einkaufen wirkt sich auf den Planeten aus. Wenn du ein Klarna Bankkonto eröffnest, erhältst du eine Klarna Bankkarte für dein alltägliches Shopping.
           </BannerDescription>
         </BannerContent>
-        <BannerImage src="./images/pic2.png" />
+        <BannerImage src="./images/pic4.png" />
       </BannerRow>
     </BannerContainer>
   );
