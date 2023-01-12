@@ -10,14 +10,16 @@ exports.getAllCashFlow = async (req, res, next) => {
   try {
     const userData = await User.findOne({ googleId: req.user.googleId });
     if (!userData.googleId) {
-      res.json({ message: NoDataFoundMessage });
+      res.status(400).json({ message: NoDataFoundMessage });
       return;
     }
-    const data = await Cashflow.find({ owner: userData._id });
+
+    const data = await Cashflow.find({ owner: userData._id }).select({ _id: 1, _valueDate: { $dateToString: { format: "%d-%m-%Y", date: "$valueDate" } }, description: 1, category: 1, totalAmount: 1, overall: 1, picture: 1, owner: 1 });
+    console.log(data);
     res.json(data);
     return;
   } catch (err) {
-    res.json({ message: err.message });
+    res.status(400).json({ message: err.message });
   }
 };
 
@@ -25,16 +27,25 @@ exports.getOverview = async (req, res, next) => {
   try {
     const userData = await User.findOne({ googleId: req.user.googleId });
     if (!userData.googleId) {
-      res.json({ message: NoDataFoundMessage });
+      res.status(400).json({ message: NoDataFoundMessage });
       return;
     }
-    //const data = await Cashflow.find({ owner: userData._id });
-    //const aggCursor = await Cashflow.aggregate([{ $group: { _id: "$category", total: { $sum: "$totalAmount" } } }]);
-    const data = await Cashflow.aggregate([{ $match: { owner: userData._id } }, { $group: { _id: { year: { $year: "$valueDate" }, month: { $month: "$valueDate" }, category: "$category" }, totalCategory: { $sum: "$totalAmount" } } }]);
+
+    const year = parseInt(req.headers.year);
+    if (isNaN(year) || year < 2000 || year > 9999) {
+      return res.status(400).json({ message: "Invalid year format" });
+    }
+    const month = parseInt(req.headers.month);
+    if (isNaN(month) || month < 1 || month > 12) {
+      return res.status(400).json({ message: "Invalid month format" });
+    }
+
+    const data = await Cashflow.aggregate([{ $match: { owner: userData._id } }, { $match: { $expr: { $and: [{ $eq: [{ $year: "$valueDate" }, year] }, { $eq: [{ $month: "$valueDate" }, month] }] } } }, { $group: { _id: { year: { $year: "$valueDate" }, month: { $month: "$valueDate" }, category: "$category" }, totalCategory: { $sum: "$totalAmount" } } }]);
+    console.log('aki',data);
     res.json(data);
     return;
   } catch (err) {
-    res.json({ message: err.message });
+    res.status(400).json({ message: err.message });
   }
 };
 
@@ -78,7 +89,7 @@ exports.deleteCashFlow = async (req, res, next) => {
     res.json({ message: SuccesMessage });
     return;
   } catch (err) {
-    res.json({ message: err.message });
+    res.status(400).json({ message: err.message });
   }
 };
 
@@ -86,13 +97,13 @@ exports.getOneCashFlow = async (req, res, next) => {
   try {
     const userData = await User.findOne({ googleId: req.user.googleId });
     if (!userData.googleId) {
-      res.json({ message: NoDataFoundMessage });
+      res.status(400).json({ message: NoDataFoundMessage });
       return;
     }
     const data = await Cashflow.findOne({ Owner: userData._id, _id: req.params.id });
     res.json(data);
   } catch (err) {
-    res.json({ message: err.message });
+    res.status(400).json({ message: err.message });
   }
 };
 
@@ -100,7 +111,7 @@ exports.editCashFlow = async (req, res, next) => {
   try {
     const userData = await User.findOne({ googleId: req.user.googleId });
     if (!userData.googleId) {
-      res.json({ message: NoDataFoundMessage });
+      res.status(400).json({ message: NoDataFoundMessage });
       return;
     }
     const data = await Cashflow.findOne({ Owner: userData._id, _id: req.params.id });
@@ -114,6 +125,6 @@ exports.editCashFlow = async (req, res, next) => {
     res.json({ message: SuccesMessage });
     return;
   } catch (err) {
-    res.json({ message: err.message });
+    res.status(400).json({ message: err.message });
   }
 };
