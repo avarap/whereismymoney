@@ -7,18 +7,34 @@ function preventDefault(event) {
   event.preventDefault();
 }
 
-export default function Deposits() {
+function getMonthName(monthNumber) {
+  const date = new Date();
+  date.setMonth(monthNumber - 1);
+
+  return date.toLocaleString("en-US", { month: "long" });
+}
+
+export default function Deposits({data, year, month}) {
+  const currentAmount = data.reduce((accumulator, currentValue) => {return accumulator + currentValue.totalCategory}, 0);
+  
   return (
     <React.Fragment>
-      <Title>Recent Deposits</Title>
-      <Typography component="p" variant="h4">
-        $3,024.00
+      <Title>Recent Expenses</Title>
+      <Typography
+        component="p"
+        variant="h4">
+        €{currentAmount}
       </Typography>
-      <Typography color="text.secondary" sx={{ flex: 1 }}>
-        on 15 March, 2019
+      <Typography
+        color="text.secondary"
+        sx={{ flex: 1 }}>
+        on {getMonthName(month)}, {year}
       </Typography>
       <div>
-        <Link color="primary" href="#" onClick={preventDefault}>
+        <Link
+          color="primary"
+          href="#"
+          onClick={preventDefault}>
           View balance
         </Link>
       </div>

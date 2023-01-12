@@ -7,14 +7,18 @@ import Grid from "@mui/material/Grid";
 import { getData } from "../utils/useFetch";
 
 function Dashboard() {
+  
+  const [year, setYear] = useState("2022");
+  const [month, setMonth] = useState("12");
   const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
 
   const getUserData = async () => {
     try {
+      const headers = { year: year, month: month };
       const url = `${process.env.REACT_APP_API_URL}/cashflow/overview`;
-      const allData = await getData(url);
-      console.log(allData.data);
-      setData(allData.data);
+      const response = await getData(url, headers);
+      setData(response.data);
     } catch (err) {
       console.log(err);
     }
@@ -26,22 +30,32 @@ function Dashboard() {
   return (
     <>
       {/* Chart */}
-      <Grid item xs={12} md={8} lg={9}>
+      <Grid
+        item
+        xs={12}
+        md={8}
+        lg={9}>
         <Paper sx={{ p: 2, display: "flex", flexDirection: "column", height: 240 }}>
-          <Chart />
+          <Chart {...{ data }} />
         </Paper>
       </Grid>
       {/* Recent Deposits */}
-      <Grid item xs={12} md={4} lg={3}>
+      <Grid
+        item
+        xs={12}
+        md={4}
+        lg={3}>
         <Paper sx={{ p: 2, display: "flex", flexDirection: "column", height: 240 }}>
-          <Deposits />
+          <Deposits
+            {...{ data }}
+            {...{ year }}
+            {...{ month }}
+          />
         </Paper>
       </Grid>
       {/* Recent Orders */}
       <Grid item xs={12}>
-        <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-          {/* <Orders {...{ data }} /> */}
-        </Paper>
+        <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>{/* <Orders {...{ data }} /> */}</Paper>
       </Grid>
     </>
   );
