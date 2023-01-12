@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import Orders from "../components/Orders";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
@@ -9,7 +8,8 @@ import MaterialTable from "../../components/MaterialTable";
 import "./CashflowStyles.css";
 // import DynamicTitle from '../../utils/DynamicTitle';
 
-const defaultValues = [{
+const defaultValues = {
+  _id: "",
   valueDate: "",
   description: "",
   category: "",
@@ -17,17 +17,20 @@ const defaultValues = [{
   overall: [],
   picture: "",
   owner: "",
-}];
+};
 
 function Cashflow() {
   const [data, setData] = useState([]);
   
   // DynamicTitle("Cashflow");
+  const currentDate = new Date().toISOString().substring(0, 10);
+  defaultValues["valueDate"] = currentDate;
 
   const getUserData = async () => {
     try {
       const url = `${process.env.REACT_APP_API_URL}/cashflow`;
       const allData = await getData(url);
+      console.log(allData.data);
       setData(allData.data);
     } catch (err) {
       console.log(err);
@@ -35,25 +38,22 @@ function Cashflow() {
   };
 
   useEffect(() => {
-    getUserData();
+    getUserData();   
   }, []);
 
   return (
     <>
-      {/* Form */}
       <Grid item xs={12}>
         <Paper className="form-wrapper">
           <Typography component="h2" variant="h5" color="inherit" noWrap sx={{ flexGrow: 2 }}>
             Add a new expense
           </Typography>
-          <CashFlowForm updateData={setData}/>
+          <CashFlowForm updateData={setData} defaultValues={defaultValues} />
         </Paper>
       </Grid>
       {/* Recent Expenses */}
       <Grid item xs={12}>
-        {/* <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}> */}
-        {data ? <MaterialTable {...{data}}/> : <></>}
-        {/* </Paper> */}
+        {data ? <MaterialTable {...{ data }} /> : <></>}
       </Grid>
     </>
   );

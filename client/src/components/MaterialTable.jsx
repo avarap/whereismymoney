@@ -28,7 +28,7 @@ const columns = [
   },
   {
     label: "Date",
-    name: "valueDate",
+    name: "_valueDate",
     options: {
       filter: true,
     },
@@ -91,15 +91,6 @@ const CustomMuiPaper = (props) => {
 };
 
 function MaterialTable({ data }) {
-  // const [rows, setRows] = useState();
-
-  // const deleteRow = (number) => {
-  //   let copy = [...rows]
-  //   copy.filter((item, index) => number !== index
-  //   )
-  //   setRows()
-  // }
-
   return (
     <MUIDataTables
       title={"Expenses"}

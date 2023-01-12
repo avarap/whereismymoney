@@ -24,10 +24,10 @@ export const useFetch = (url) => {
   return data;
 };
 
-//axios.defaults.withCredentials=true;
-export const getData = async (url) => {
+export const getData = async (url, headers = {}) => {
   try {
-    const response = await axios.get(url, { withCredentials: true });
+    const newHeaders = { ...headers };
+    const response = await axios.get(url, { headers: newHeaders, withCredentials: true });
     return response;
   } catch (err) {
     console.log(err.message);
@@ -35,9 +35,10 @@ export const getData = async (url) => {
   }
 };
 
-export const postData = async (url, data) => {
+export const postData = async (url, data, headers = {}) => {
   try {
-    const response = await axios.post(url, data, { withCredentials: true });
+    const newHeaders = { ...headers };
+    const response = await axios.post(url, data, { headers: newHeaders, withCredentials: true });
     return response;
   } catch (err) {
     console.log(err.message);
