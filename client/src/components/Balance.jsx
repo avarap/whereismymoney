@@ -26,7 +26,6 @@ export default function Deposits({data, year, month}) {
         €{currentAmount}
       </Typography>
       <Typography
-        color="text.secondary"
         sx={{ flex: 1 }}>
         on {getMonthName(month)}, {year}
       </Typography>

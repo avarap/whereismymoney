@@ -41,7 +41,7 @@ const CashFlowForm = ({ updateData, defaultValues }) => {
   return (
     <form onSubmit={handleSubmit}>
       <Grid container alignItems="center" justify="center" direction="column">
-        <Grid item xs={12} md={8} lg={9} sx={{ display: "flex" }}>
+        <Grid item xs={12} md={8} lg={9} sx={{ display: "flex" }} className="form-container">
           <TextField id="date-input" name="valueDate" label="Date" type="date" value={formValues.valueDate} onChange={handleInputChange} sx={{ m: 1 }} />
           <TextField id="desc-input" name="description" label="Description" type="text" value={formValues.description} onChange={handleInputChange} sx={{ m: 1 }} />
           <TextField id="amount-input" name="totalAmount" label="Amount" type="number" value={formValues.totalAmount} onChange={handleInputChange} sx={{ m: 1 }}/>
@@ -54,7 +54,7 @@ const CashFlowForm = ({ updateData, defaultValues }) => {
               <MenuItem key="others " value="others">Others</MenuItem>
             </Select>
           </FormControl>
-          <Button variant="contained" color="primary" type="submit" sx={{ m: 1 }}>Submit</Button>
+          <Button variant="contained" className="submit-btn" type="submit" sx={{ m: 1 }}>Submit</Button>
         </Grid>
       </Grid>
     </form>

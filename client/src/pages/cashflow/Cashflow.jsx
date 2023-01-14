@@ -45,7 +45,7 @@ function Cashflow() {
     <>
       <Grid item xs={12}>
         <Paper className="form-wrapper">
-          <Typography component="h2" variant="h5" color="inherit" noWrap sx={{ flexGrow: 2 }}>
+          <Typography component="h2" variant="h5" color="inherit" noWrap sx={{ flexGrow: 2, marginBottom: "10px" }}>
             Add a new expense
           </Typography>
           <CashFlowForm updateData={setData} defaultValues={defaultValues} />
