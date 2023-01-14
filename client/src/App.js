@@ -36,6 +36,7 @@ function App() {
 
 				<Route exact path="/login" element={<Login2 />} />
 				<Route path="/signup" element={<SignUp />} />
+				<Route path="/hi" element={<h1>hello world!</h1>} />
 			</Routes>
 		</div>
 	);
