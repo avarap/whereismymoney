@@ -1,5 +1,6 @@
-import React from 'react'
-import { useContext, navigate } from 'react';
+import React from 'react';
+import { useNavigate } from "react-router-dom";
+import { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContextProvider';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -12,6 +13,8 @@ import "./ProfileStyles.css";
 function Profile() {
 
 	const { userObject } = useContext(UserContext);
+
+	const navigate=useNavigate();
 
 	function logout() {
 		axios({ method: "POST", url: `${process.env.REACT_APP_API_URL}/auth/logout`, withCredentials: true })

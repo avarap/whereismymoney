@@ -38,7 +38,7 @@ module.exports = (app) => {
   app.use(express.urlencoded({ extended: false }));
 
   initializePassport();
-
+console.log(process.env.NODE_ENV === "production" ? "none" : "lax");
   app.use(
     session({
       secret: process.env.SESSION_SECRET,
