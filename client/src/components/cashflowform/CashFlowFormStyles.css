@@ -4,6 +4,16 @@
     flex-direction: row;
 }
 
+.submit-btn {
+    background-color: #CFF9EA !important;
+    color:black !important;
+}
+
+.submit-btn:hover {
+    background-color: black !important;
+    color:white !important;
+}
+
 @media (max-width: 900px) {
     .form-container {
         display: flex;

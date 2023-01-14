@@ -21,7 +21,7 @@ export default function Deposits({data, year, month}) {
     <React.Fragment>
       <Title>Recent Expenses</Title>
       <Typography component="p" variant="h4">{currentAmount} €</Typography>
-      <Typography color="text.secondary" sx={{ flex: 1 }}>{getMonthName(month)}, {year}</Typography>
+      <Typography sx={{ flex: 1 }}>{getMonthName(month)}, {year}</Typography>
       {/* <div>
         <Link color="text.secondary" href="#" onClick={preventDefault}>View balance</Link>
       </div> */}

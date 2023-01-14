@@ -24,7 +24,7 @@ function MobileBottomNavigation() {
       <Link to="/cashflow">
         <BottomNavigationAction label="Cashflow" value="cashflow" icon={<ShoppingCartIcon style={{color:"black"}} />} />
       </Link>
-      <Link to="/cashflow">
+      <Link to="/friends">
         <BottomNavigationAction label="Friends" value="friends" icon={<PeopleIcon style={{color:"black"}} />} />
       </Link>
     </BottomNavigation>

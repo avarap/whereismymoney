@@ -19,7 +19,7 @@ export default function Chart({data}) {
           data={newData}>
           <Bar
             dataKey="totalCategory"
-            fill="green"
+            fill= "#cff9ea"
           />
           <CartesianGrid stroke="#ccc" />
           <XAxis dataKey="name" />
