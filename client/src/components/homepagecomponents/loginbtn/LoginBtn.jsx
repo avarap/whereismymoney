@@ -3,7 +3,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import { LoginButton } from "./LoginBtnStyle";
 
 function LoginBtn() {
-
+console.log(process.env.REACT_APP_API_URL);
 	const googleAuth = () => {
 		window.open(
 			`${process.env.REACT_APP_API_URL}/auth/google`,
