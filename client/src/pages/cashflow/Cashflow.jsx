@@ -53,7 +53,7 @@ function Cashflow() {
       </Grid>
       {/* Recent Expenses */}
       <Grid item xs={12}>
-        {data ? <MaterialTable {...{ data }} /> : <></>}
+        {data ? <MaterialTable {...{ data }} {...{setData}} isDeleteAllowed={true}/> : <></>}
       </Grid>
     </>
   );

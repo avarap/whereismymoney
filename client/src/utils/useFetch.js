@@ -45,3 +45,15 @@ export const postData = async (url, data, headers = {}) => {
     return "Error connecting to the API";
   }
 };
+
+export const deleteUserData = async (id) => {
+  try {
+    const url = `${process.env.REACT_APP_API_URL}/cashflow/delete/${id}`;
+    const allData = await postData(url, {});
+    console.log(allData);
+    return allData;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};

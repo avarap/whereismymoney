@@ -4,13 +4,6 @@ import { useTheme } from "@mui/material/styles";
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import Title from "./Title";
 
-const data = [
-  { name: "Geeksforgeeks", students: 400 },
-  { name: "Technical scripter", students: 700 },
-  { name: "Geek-i-knack", students: 200 },
-  { name: "Geek-o-mania", students: 1000 },
-];
-
 export default function Chart({data}) {
   const theme = useTheme();
 

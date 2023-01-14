@@ -8,11 +8,12 @@ import { getData } from "../utils/useFetch";
 import { Colors } from "./../styles/Theme";
 
 function Dashboard() {
-  
-  const [year, setYear] = useState("2022");
-  const [month, setMonth] = useState("12");
+  const [year, setYear] = useState("2023");
+  const [month, setMonth] = useState("1");
   const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
+
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth();
 
   const getUserData = async () => {
     try {
@@ -26,7 +27,10 @@ function Dashboard() {
   };
 
   useEffect(() => {
-    getUserData();
+    console.log('Month ',currentMonth.toString());
+    setYear(currentYear.toString());
+    setMonth((currentMonth.toString()==='0' ? '1' : currentMonth.toString() ));
+    getUserData();    
   }, []);
   return (
     <>
