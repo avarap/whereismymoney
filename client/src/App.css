@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+
+.google-btn {
+  width: 230px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 20px 0;
+  color: #2c444e;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.google-btn > img{
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
+.google-btn > span{
+  margin-left: 10px;
+}
+
+/* .css-binzgt {
+  background-color: #f8f8f8;
+  padding: 50px 20px;
+  border: solid 1px black;
+  border-radius: 8px;
+} */
